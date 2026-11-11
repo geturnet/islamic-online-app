@@ -1,0 +1,175 @@
+---
+import Header from '../components/Header.tsx';
+import Footer from '../components/Footer.tsx';
+import Sidebar from '../components/Sidebar.tsx';
+import AdSlot from '../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Islamic Online - Complete Islamic Digital Companion & Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="OqhGdJ_aNXti-vQ-L4nOPadp7cBUMCbDlnKy21nQE3c" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+    
+    {/* Global Header with Language Selector & Nav */}
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      
+      {/* Hero Section */}
+      <div class="relative bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-700 text-white rounded-3xl p-8 md:p-12 shadow-xl mb-12 overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 text-9xl opacity-10 font-arabic select-none pointer-events-none">
+          ☪
+        </div>
+        <div class="max-w-2xl relative z-10">
+          <span class="text-xs uppercase tracking-widest bg-emerald-800/80 px-3 py-1 rounded-full text-emerald-200 inline-block mb-4">
+            Welcome to Islamic Online v2026
+          </span>
+          <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+            Your Comprehensive Digital Islamic Companion
+          </h1>
+          <p class="text-emerald-100 text-base md:text-lg mb-8 leading-relaxed">
+            Explore verified Al-Quran chapters, authentic Hadith collections, accurate daily prayer schedules, Qibla direction, Zakat calculation, and digital Dhikr tools across 10 global languages.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/quran" class="px-6 py-3 bg-white text-emerald-900 font-bold rounded-xl shadow-md hover:bg-emerald-50 transition">
+              📖 Read Al-Quran
+            </a>
+            <a href="/prayer-times" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition border border-emerald-500">
+              ⏰ Prayer Times
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Ad Slot */}
+      <div class="mb-12">
+        <AdSlot client:load position="in-article" slotId="1222556839" />
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        {/* Main Content Area */}
+        <div class="flex-1 space-y-12">
+          
+          {/* Quick Access Grid / Features Section */}
+          <section>
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold text-emerald-900 dark:text-emerald-100">
+                Core Features & Services
+              </h2>
+              <span class="text-xs text-gray-400">Multi-language support (10 languages)</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Feature 1: Quran */}
+              <a href="/quran" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  📖
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Al-Quran Al-Kareem</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Read all 114 Surahs with Uthmani Arabic script, English translations, and audio verses.
+                </p>
+              </a>
+
+              {/* Feature 2: Hadith */}
+              <a href="/hadith" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  📜
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Authentic Hadiths</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Explore canonical collections including Sahih al-Bukhari, Sahih Muslim, and Sunan an-Nasa'i.
+                </p>
+              </a>
+
+              {/* Feature 3: Prayer Times */}
+              <a href="/prayer-times" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  ⏰
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Accurate Prayer Times</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Real-time GPS geolocation azan schedules, monthly timetables, and prayer books.
+                </p>
+              </a>
+
+              {/* Feature 4: Qibla Compass */}
+              <a href="/qibla" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  🕋
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Qibla Direction</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Find the exact bearing and visual compass heading toward the Holy Kaaba in Mecca.
+                </p>
+              </a>
+
+              {/* Feature 5: Zakat Calculator */}
+              <a href="/zakat-calculator" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  💰
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Zakat Calculator</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Compute your annual wealth obligation (gold, silver, cash, business) based on 85g nisab.
+                </p>
+              </a>
+
+              {/* Feature 6: Digital Tasbih */}
+              <a href="/tasbih" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                  📿
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Digital Tasbih Counter</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Engage in daily Dhikr with interactive tap counters and customizable remembrance formulas.
+                </p>
+              </a>
+
+            </div>
+          </section>
+
+          {/* Middle Ad Slot */}
+          <div class="my-8">
+            <AdSlot client:load position="in-article" slotId="1222556839" />
+          </div>
+
+          {/* SEO Knowledge & Articles Section */}
+          <section class="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2 class="text-2xl font-bold text-emerald-900 dark:text-emerald-100 mb-4">
+              Islamic Knowledge Hub & SEO Articles
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              Islamic Online features over 100 in-depth scholarly articles (3,000+ words each) covering Islamic jurisprudence, Tafsir sciences, spiritual growth, and historical heritage across 10 global languages.
+            </p>
+            <div class="flex items-center space-x-4">
+              <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full">
+                100+ Articles Published
+              </span>
+              <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full">
+                Multi-Language SEO
+              </span>
+            </div>
+          </section>
+
+        </div>
+
+        {/* Sidebar Area */}
+        <Sidebar />
+
+      </div>
+
+    </main>
+
+    {/* Comprehensive Footer */}
+    <Footer />
+
+  </body>
+</html>
