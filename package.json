@@ -1,0 +1,22 @@
+{
+  "name": "islamic-online-app",
+  "version": "1.0.0",
+  "description": "Comprehensive digital Islamic companion and multi-language tools built with Astro and Tailwind CSS.",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": ["islamic", "quran", "hadith", "prayer-times", "zakat", "astro", "tailwind"],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
