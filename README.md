@@ -64,3 +64,62 @@ islamic-online-app/
 │       └── global.css
 ├── astro.config.mjs
 └── package.json
+```
+
+
+## 🛠️ Getting Started & Installation
+Follow these steps to run or develop the project locally:
+
+**1. Clone the Repository**
+
+Bash
+git clone [https://github.com/geturnet/islamic-online-app.git](https://github.com/geturnet/islamic-online-app.git)
+
+```
+cd islamic-online-app
+```
+**2. Install Dependencies**
+Make sure you have Node.js installed, then run:
+```
+Bash
+npm install
+```
+
+**3. Run Development Server**
+Bash
+npm run dev
+Open http://localhost:4321 in your browser to view the application.
+
+**📢 Advertising Integration**
+Ad slots are managed via the reusable <AdSlot> component (src/components/AdSlot.tsx). You can easily replace the placeholder HTML inside AdSlot.tsx with your ad network tags (e.g., Google AdSense, Adsterra, or custom banner scripts):
+```
+TypeScript
+export default function AdSlot({ position }) {
+  return (
+    <div className={`ad-slot-${position}`}>
+      {/* Insert your Ad Network script or responsive tag here */}
+    </div>
+  );
+}
+```
+
+## 📜 Footer Links Map
+The footer includes structured navigation matching standard directory practices:
+
+**Prayer**: Prayer times, All Prayer times, Prayer Book, Yearly prayer times.
+
+**Special Features**: Al-Quran, Hadith, Dua, Islamic Calendar, Knowledge Articles, Islamic Gallery, News.
+
+**Tools**: Qibla Direction, Date Converter, Zakat Calculator, Prayer Times Widget, Digital Tasbih.
+
+**Legal & Company**: About Us, Privacy Policy, Terms & Conditions, Contact Us.
+
+## 📄 License
+This project is licensed under the MIT License.
+
+Alhikmah © 2026. All rights reserved.
+
+
+---
+
+
