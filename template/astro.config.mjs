@@ -1,3 +1,10 @@
+// astro.config.mjs
+export default defineConfig({
+  site: 'https://geturnet.github.io',
+  base: '/islamic-online-app',
+  // ... konfigurasi lainnya
+});
+
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
