@@ -1,0 +1,57 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import PrayerTimesWidget from '../../components/PrayerTimesWidget.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Accurate Prayer Times & Monthly Schedules - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 space-y-8">
+          <div class="text-center md:text-left">
+            <h1 class="text-3xl font-extrabold text-emerald-900 dark:text-emerald-100 mb-2">
+              Daily Prayer Times & Monthly Schedules
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+              Get accurate Azan timings worldwide with auto-geolocation and yearly prayer books.
+            </p>
+          </div>
+
+          <!-- Interactive Widget -->
+          <PrayerTimesWidget client:load />
+
+          <div class="article-content bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2>Importance of Salah in Islam</h2>
+            <p>Salah (Prayer) is the second pillar of Islam, prescribed five times a day as a direct connection between the worshipper and the Almighty. Keeping track of accurate local prayer times ensures timely fulfillment of this sacred duty.</p>
+            
+            <div class="my-6">
+              <AdSlot position="in-article" slotId="1222556839" />
+            </div>
+
+            <h3>How Calculation Methods Work</h3>
+            <p>Different regions utilize various calculation angles (such as Muslim World League, ISNA, or Egyptian General Authority of Survey) to determine Fajr and Isha angles accurately based on astronomical twilight.</p>
+          </div>
+        </div>
+
+        <!-- Sidebar Area -->
+        <Sidebar />
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
