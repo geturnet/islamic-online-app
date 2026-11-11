@@ -1,0 +1,51 @@
+---
+import Header from '../components/Header.tsx';
+import Footer from '../components/Footer.tsx';
+import AdSlot from '../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Terms & Conditions - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-emerald-900 dark:text-emerald-100 mb-2">Terms & Conditions</h1>
+        <p class="text-sm text-gray-500">Last updated: January 2026</p>
+      </div>
+
+      <div class="article-content space-y-6 text-gray-700 dark:text-gray-300">
+        <p>Welcome to Islamic Online! These terms and conditions outline the rules and regulations for the use of Islamic Online's Website.</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Islamic Online if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+        <h2>2. Intellectual Property Rights</h2>
+        <p>Other than the content you own, under these Terms, Islamic Online and/or its licensors own all the intellectual property rights and materials contained in this website. You are granted limited license only for purposes of viewing the material contained on this website.</p>
+
+        <h2>3. Restrictions</h2>
+        <p>You are specifically restricted from all of the following:</p>
+        <ul>
+          <li>publishing any website material in any other media without prior written consent;</li>
+          <li>selling, sublicensing and/or otherwise commercializing any website material;</li>
+          <li>using this website in any way that is or may be damaging to this website.</li>
+        </ul>
+
+        <div class="my-6">
+          <AdSlot position="in-article" slotId="terms-ad" />
+        </div>
+
+        <h2>4. Governing Law</h2>
+        <p>These terms will be governed by and interpreted in accordance with the laws of the jurisdiction in which the platform operates, and you submit to the non-exclusive jurisdiction of the state and federal courts located for the resolution of any disputes.</p>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
