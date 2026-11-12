@@ -1,0 +1,61 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import TasbihWidget from '../../components/TasbihWidget.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digital Tasbih Counter - Dhikr & Remembrance - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 space-y-8">
+          <div class="text-center md:text-left">
+            <h1 class="text-3xl font-extrabold text-emerald-900 dark:text-emerald-100 mb-2">
+              Online Digital Tasbih Counter
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+              Count your daily Istighfar, Subhanallah, and Dhikr easily with our interactive counter tool.
+            </p>
+          </div>
+
+          <!-- Interactive Tasbih Widget -->
+          <TasbihWidget client:load />
+
+          <div class="article-content bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2>The Virtue of Dhikr in Islam</h2>
+            <p>Remembrance of Allah (Dhikr) brings peace and tranquility to the heart. As mentioned in the Quran: <em>"Unquestionably, by the remembrance of Allah hearts are assured."</em> (Surah Ar-Ra'd: 28).</p>
+            
+            <div class="my-6">
+              <AdSlot position="in-article" slotId="1222556839" />
+            </div>
+
+            <h3>Recommended Daily Tasbih Counts</h3>
+            <ul>
+              <li><strong>Subhanallah:</strong> 33 times after every obligatory prayer.</li>
+              <li><strong>Alhamdulillah:</strong> 33 times after every obligatory prayer.</li>
+              <li><strong>Allahu Akbar:</strong> 34 times after every obligatory prayer (making a total of 100).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar Area -->
+        <Sidebar />
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

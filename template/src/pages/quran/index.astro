@@ -1,0 +1,60 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import QuranIndexWidget from '../../components/QuranIndexWidget.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Al-Quran Al-Kareem - Read Quran Online with Translations - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 space-y-8">
+          <div class="text-center md:text-left bg-gradient-to-r from-emerald-900 to-emerald-700 text-white p-8 rounded-3xl shadow-lg">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-3">
+              Al-Quran Al-Kareem (القرآن الكريم)
+            </h1>
+            <p class="text-emerald-100 text-sm md:text-base max-w-2xl leading-relaxed">
+              Read, study, and explore all 114 Surahs of the Holy Quran with authentic translations, audio references, and deep-dive scholarly commentary.
+            </p>
+          </div>
+
+          <!-- Interactive Surah Index Widget -->
+          <QuranIndexWidget client:load />
+
+          <div class="article-content bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2>The Excellence of Reading Al-Quran</h2>
+            <p>Reciting the Quran brings immense spiritual blessings and guidance. The Prophet Muhammad (PBUH) said: <em>"Whoever reads a letter from the Book of Allah will receive a reward for it, and the reward is multiplied by ten."</em> (Tirmidhi).</p>
+            
+            <div class="my-6">
+              <AdSlot position="in-article" slotId="1222556839" />
+            </div>
+
+            <h3>How to Benefit from Our Quran Section</h3>
+            <ul>
+              <li><strong>Search & Filter:</strong> Instantly locate any Surah by typing its name or number.</li>
+              <li><strong>Bilingual Insight:</strong> Access both Arabic Uthmani text and global translations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar Area -->
+        <Sidebar />
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

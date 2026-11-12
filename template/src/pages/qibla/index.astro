@@ -1,0 +1,60 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import QiblaWidget from '../../components/QiblaWidget.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Qibla Direction Finder - Kaaba Compass - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 space-y-8">
+          <div class="text-center md:text-left">
+            <h1 class="text-3xl font-extrabold text-emerald-900 dark:text-emerald-100 mb-2">
+              Qibla Direction Compass (اتجاه القبلة)
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+              Find the exact direction of the Holy Kaaba in Mecca instantly from anywhere on Earth.
+            </p>
+          </div>
+
+          <!-- Interactive Qibla Widget -->
+          <QiblaWidget client:load />
+
+          <div class="article-content bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2>Importance of Facing the Qibla</h2>
+            <p>Facing the Qibla (the direction of the Kaaba in Mecca) is a mandatory condition (Shart) for the validity of daily prayers (Salah) in Islam, as commanded in the Holy Quran in Surah Al-Baqarah (2:144).</p>
+            
+            <div class="my-6">
+              <AdSlot position="in-article" slotId="1222556839" />
+            </div>
+
+            <h3>How Our Qibla Compass Works</h3>
+            <ul>
+              <li><strong>Geolocation:</strong> Automatically requests your browser coordinates via GPS.</li>
+              <li><strong>Spherical Trigonometry:</strong> Calculates the shortest great-circle bearing to Mecca.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar Area -->
+        <Sidebar />
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

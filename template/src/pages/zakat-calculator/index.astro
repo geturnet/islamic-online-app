@@ -1,0 +1,62 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import ZakatCalculatorWidget from '../../components/ZakatCalculatorWidget.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Zakat Calculator - Calculate Your Annual Zakat - Islamic Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <Header currentLang="en" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 space-y-8">
+          <div class="text-center md:text-left">
+            <h1 class="text-3xl font-extrabold text-emerald-900 dark:text-emerald-100 mb-2">
+              Islamic Zakat Calculator
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+              Fulfill your pillar of charity accurately with our automated asset and nisab calculator.
+            </p>
+          </div>
+
+          <!-- Interactive Zakat Widget -->
+          <ZakatCalculatorWidget client:load />
+
+          <div class="article-content bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+            <h2>Understanding Zakat Rules</h2>
+            <p>Zakat is one of the Five Pillars of Islam, obligatory upon every Muslim who owns wealth above the threshold known as <strong>Nisab</strong> for a full lunar year (Hawl).</p>
+            
+            <div class="my-6">
+              <AdSlot position="in-article" slotId="1222556839" />
+            </div>
+
+            <h3>What Assets are Zakatable?</h3>
+            <ul>
+              <li><strong>Cash & Bank Balances:</strong> Money in savings, current accounts, or cash in hand.</li>
+              <li><strong>Gold & Silver:</strong> Precious metals exceeding personal normal adornment limits.</li>
+              <li><strong>Business Goods:</strong> Commercial inventory valued at current market rates.</li>
+              <li><strong>Investments & Shares:</strong> Stocks and financial securities held for trade.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar Area -->
+        <Sidebar />
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
