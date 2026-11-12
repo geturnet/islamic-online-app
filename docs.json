@@ -43,27 +43,27 @@
         "items": [
           {
             "label": "Al-Quran",
-            "href": "/quran"
+            "href": "/docs/quran"
           },
           {
             "label": "Hadith",
-            "href": "/hadith"
+            "href": "/docs/hadith"
           },
           {
             "label": "Dua",
-            "href": "/dua"
+            "href": "/docs/dua"
           },
           {
             "label": "Islamic Calendar",
-            "href": "/islamic-calendar"
+            "href": "/docs/islamic-calendar"
           },
           {
             "label": "99 Names",
-            "href": "/99-names"
+            "href": "/docs/99-names"
           },
           {
             "label": "Knowledge (Articles)",
-            "href": "/articles/index"
+            "href": "/docs/articles"
           }
         ]
       },
@@ -72,23 +72,23 @@
         "items": [
           {
             "label": "Prayer Times",
-            "href": "/prayer-times"
+            "href": "/docs/prayer-times"
           },
           {
             "label": "Qibla Direction",
-            "href": "/tools/qibla-direction"
+            "href": "/docs/tools/qibla-direction"
           },
           {
             "label": "Date Converter",
-            "href": "/tools/date-converter"
+            "href": "/docs/tools/date-converter"
           },
           {
             "label": "Zakat Calculator",
-            "href": "/tools/zakat-calculator"
+            "href": "/docs/tools/zakat-calculator"
           },
           {
             "label": "Tasbih Counter",
-            "href": "/tasbih"
+            "href": "/docs/tasbih"
           }
         ]
       },
@@ -97,19 +97,19 @@
         "items": [
           {
             "label": "About",
-            "href": "/about"
+            "href": "/docs/about"
           },
           {
             "label": "Contact us",
-            "href": "/contact"
+            "href": "/docs/contact"
           },
           {
             "label": "Privacy",
-            "href": "/privacy"
+            "href": "/docs/privacy"
           },
           {
             "label": "Terms",
-            "href": "/terms"
+            "href": "/docs/terms"
           }
         ]
       }
