@@ -1,0 +1,158 @@
+---
+title: "Islamic Online: Quran, Prayer Times, Hadith & Islamic Tools (copy)"
+description: "Islamic Online offers the Quran, Hadith, Dua, prayer times, Islamic calendar, Qibla direction, Zakat calculator, and trusted articles for Muslims worldwide."
+icon: "house"
+mode: "wide"
+---
+
+<HeroSlider />
+
+<div className="not-prose" style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", margin: "20px 0 8px" }}>
+  <a href="/prayer-times" style={{ padding: "10px 20px", borderRadius: 999, background: "#0F766E", color: "#fff", fontWeight: 600, textDecoration: "none" }}>Prayer Times</a>
+  <a href="/quran" style={{ padding: "10px 20px", borderRadius: 999, border: "2px solid #0F766E", color: "#0F766E", fontWeight: 600, textDecoration: "none" }}>Read the Quran</a>
+  <a href="/tools/qibla-direction" style={{ padding: "10px 20px", borderRadius: 999, border: "2px solid #D4A017", color: "#B8860B", fontWeight: 600, textDecoration: "none" }}>Qibla Direction</a>
+  <a href="/articles/index" style={{ padding: "10px 20px", borderRadius: 999, border: "1px solid rgba(127,127,127,.35)", color: "inherit", fontWeight: 600, textDecoration: "none" }}>All Articles</a>
+</div>
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Featured articles
+
+In-depth English guides grounded in the Quran and Sunnah, written for beginners and lifelong learners alike.
+
+<CardGroup cols={3}>
+  <Card title="The Five Pillars of Islam" href="/articles/five-pillars-of-islam" img="/images/articles/five-pillars.svg">
+    Shahadah, Salah, Zakat, Sawm and Hajj explained with Quranic evidence, hadith and practical tips.
+  </Card>
+
+  <Card title="How to Perform Salah" href="/articles/how-to-perform-salah" img="/images/articles/salah.svg">
+    Step-by-step prayer guide, from wudu to tasleem, with notes on differences between schools.
+  </Card>
+
+  <Card title="Ramadan Fasting Guide" href="/articles/ramadan-fasting-guide" img="/images/articles/ramadan.svg">
+    Rules, exemptions, suhoor and iftar, Laylat al-Qadr and spiritual tips for the blessed month.
+  </Card>
+
+  <Card title="Zakat: The Complete Guide" href="/articles/zakat-complete-guide" img="/images/articles/zakat.svg">
+    Who must pay, nisab, zakatable assets, how to calculate and the eight categories of recipients.
+  </Card>
+
+  <Card title="Meaning of the 99 Names of Allah" href="/articles/meaning-of-99-names-of-allah" img="/images/articles/99-names.svg">
+    Explore the beautiful names of Allah with meanings, Quranic context and lessons for daily life.
+  </Card>
+
+  <Card title="Browse all articles" icon="book-open" href="/articles/index">
+    See every article in the Knowledge library, organized by topic and label.
+  </Card>
+</CardGroup>
+
+## Prayer
+
+Stay connected to your daily worship with accurate times and the Islamic calendar.
+
+<CardGroup cols={2}>
+  <Card title="Prayer Times" icon="clock" href="/prayer-times">
+    Fajr, Dhuhr, Asr, Maghrib and Isha times for your location and preferred calculation method.
+  </Card>
+
+  <Card title="Islamic Calendar" icon="calendar" href="/islamic-calendar">
+    Today's Hijri date, the Islamic months and key events throughout the year.
+  </Card>
+</CardGroup>
+
+## Our special features
+
+<CardGroup cols={3}>
+  <Card title="Al-Quran" icon="book-quran" href="/quran">
+    All 114 surahs, key chapters, etiquette and tips for reading and memorization.
+  </Card>
+
+  <Card title="Hadith" icon="scroll" href="/hadith">
+    Sayings of the Prophet Muhammad (peace be upon him) from authentic collections.
+  </Card>
+
+  <Card title="Dua" icon="hands-praying" href="/dua">
+    Supplications for morning, evening, travel, illness and every moment of need.
+  </Card>
+
+  <Card title="99 Names of Allah" icon="star-and-crescent" href="/99-names">
+    Search and explore the beautiful names of Allah with their meanings.
+  </Card>
+
+  <Card title="Six Kalimas" icon="kaaba" href="/kalima">
+    The six Kalimas in Arabic with transliteration and English meaning.
+  </Card>
+
+  <Card title="Tasbih Counter" icon="circle-dot" href="/tasbih">
+    A digital counter for your daily dhikr and glorification of Allah.
+  </Card>
+</CardGroup>
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Our tools
+
+<CardGroup cols={3}>
+  <Card title="Qibla Direction" icon="compass" href="/tools/qibla-direction">
+    Find the direction of the Kaaba from any location.
+  </Card>
+
+  <Card title="Date Converter" icon="calendar-days" href="/tools/date-converter">
+    Convert between Gregorian and Hijri dates.
+  </Card>
+
+  <Card title="Zakat Calculator" icon="calculator" href="/tools/zakat-calculator">
+    Estimate your Zakat on cash, gold, silver and trade goods.
+  </Card>
+</CardGroup>
+
+## Why Islamic Online
+
+- **Authentic sources**: content draws on the Quran, Sahih hadith collections and established scholarly works, with references.
+- **Free and accessible**: every tool and article is free on any device.
+- **Respectful of differences**: where scholars differ, we note the main views briefly and fairly.
+- **Privacy-focused**: interactive tools run in your browser and do not store your location or financial inputs.
+
+Have a question or suggestion? [Contact us](/contact) or read [about Islamic Online](/about).
+
+export const HeroSlider = () => {
+  const slides = [
+    { img: "/images/articles/five-pillars.svg", tag: "Beginners", title: "The Five Pillars of Islam", text: "A complete guide to Shahadah, Salah, Zakat, Sawm and Hajj.", href: "/articles/five-pillars-of-islam" },
+    { img: "/images/articles/salah.svg", tag: "Worship", title: "How to Perform Salah", text: "Learn the prayer step by step, from wudu to tasleem.", href: "/articles/how-to-perform-salah" },
+    { img: "/images/articles/ramadan.svg", tag: "Ramadan", title: "Ramadan Fasting Guide", text: "Rules, exemptions and spiritual tips for the blessed month.", href: "/articles/ramadan-fasting-guide" },
+    { img: "/images/articles/zakat.svg", tag: "Charity", title: "Zakat: The Complete Guide", text: "Nisab, zakatable assets and the eight categories of recipients.", href: "/articles/zakat-complete-guide" },
+    { img: "/images/articles/99-names.svg", tag: "Faith", title: "Meaning of the 99 Names of Allah", text: "Discover the beautiful names of Allah and their lessons.", href: "/articles/meaning-of-99-names-of-allah" },
+  ];
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setI((p) => (p + 1) % slides.length), 5000);
+    return () => clearInterval(t);
+  }, [paused]);
+  const go = (n) => setI((n + slides.length) % slides.length);
+  const arrow = { position: "absolute", top: "50%", transform: "translateY(-50%)", width: 40, height: 40, borderRadius: 999, border: "none", background: "rgba(255,255,255,.85)", color: "#0F766E", fontSize: 22, fontWeight: 700, cursor: "pointer", zIndex: 3 };
+  return (
+    <div className="not-prose" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} style={{ position: "relative", width: "100%", borderRadius: 20, overflow: "hidden", background: "#0b3d3a", aspectRatio: "16 / 7", minHeight: 300 }}>
+      {slides.map((s, n) => (
+        <div key={n} aria-hidden={n !== i} style={{ position: "absolute", inset: 0, opacity: n === i ? 1 : 0, transition: "opacity .8s ease", pointerEvents: n === i ? "auto" : "none" }}>
+          <img src={s.img} alt={s.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(4,47,46,.92) 0%, rgba(4,47,46,.6) 45%, rgba(4,47,46,.1) 100%)" }} />
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, display: "flex", flexDirection: "column", justifyContent: "center", padding: "24px clamp(24px, 6vw, 64px)", maxWidth: 620, color: "#fff" }}>
+            <span style={{ alignSelf: "flex-start", fontSize: 12, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", background: "#D4A017", color: "#1f1600", padding: "4px 10px", borderRadius: 999, marginBottom: 12 }}>{s.tag}</span>
+            <h2 style={{ fontSize: "clamp(22px, 4vw, 40px)", lineHeight: 1.15, fontWeight: 800, margin: "0 0 10px", color: "#fff" }}>{s.title}</h2>
+            <p style={{ fontSize: "clamp(14px, 2vw, 18px)", margin: "0 0 18px", color: "rgba(255,255,255,.9)" }}>{s.text}</p>
+            <a href={s.href} style={{ alignSelf: "flex-start", padding: "10px 20px", borderRadius: 999, background: "#fff", color: "#0F766E", fontWeight: 700, textDecoration: "none" }}>Read article →</a>
+          </div>
+        </div>
+      ))}
+      <button type="button" aria-label="Previous slide" onClick={() => go(i - 1)} style={{ ...arrow, left: 12 }}>‹</button>
+      <button type="button" aria-label="Next slide" onClick={() => go(i + 1)} style={{ ...arrow, right: 12 }}>›</button>
+      <div style={{ position: "absolute", bottom: 14, left: 0, right: 0, display: "flex", justifyContent: "center", gap: 8, zIndex: 3 }}>
+        {slides.map((s, n) => (
+          <button key={n} type="button" aria-label={"Go to slide " + (n + 1)} onClick={() => go(n)} style={{ width: n === i ? 28 : 10, height: 10, borderRadius: 999, border: "none", background: n === i ? "#D4A017" : "rgba(255,255,255,.6)", cursor: "pointer", transition: "width .3s" }} />
+        ))}
+      </div>
+    </div>
+  );
+};
