@@ -1,4 +1,5 @@
 import AdSlot from './AdSlot';
+import { sitePath } from '../lib/site';
 
 export default function Sidebar() {
   return (
@@ -17,31 +18,31 @@ export default function Sidebar() {
         </h3>
         <ul className="space-y-3 text-sm font-medium text-gray-700 dark:text-gray-300">
           <li>
-            <a href="/quran" className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
+            <a href={sitePath('quran')} className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
               <span>📖 Al-Quran & Tafsir</span>
               <span className="text-xs text-emerald-600 font-bold">Read</span>
             </a>
           </li>
           <li>
-            <a href="/prayer-times" className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
+            <a href={sitePath('prayer-times')} className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
               <span>⏰ Prayer Times</span>
               <span className="text-xs text-emerald-600 font-bold">Check</span>
             </a>
           </li>
           <li>
-            <a href="/qibla" className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
+            <a href={sitePath('qibla')} className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
               <span>🕋 Qibla Direction</span>
               <span className="text-xs text-emerald-600 font-bold">Find</span>
             </a>
           </li>
           <li>
-            <a href="/zakat-calculator" className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
+            <a href={sitePath('zakat-calculator')} className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
               <span>💰 Zakat Calculator</span>
               <span className="text-xs text-emerald-600 font-bold">Calculate</span>
             </a>
           </li>
           <li>
-            <a href="/tasbih" className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
+            <a href={sitePath('tasbih')} className="flex items-center justify-between p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-gray-800 transition">
               <span>📿 Digital Tasbih</span>
               <span className="text-xs text-emerald-600 font-bold">Dhikr</span>
             </a>

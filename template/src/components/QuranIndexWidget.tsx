@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AdSlot from './AdSlot';
+import { sitePath } from '../lib/site';
 
 interface Surah {
   number: number;
@@ -60,7 +61,7 @@ export default function QuranIndexWidget() {
           {filteredSurahs.map((surah) => (
             <a
               key={surah.number}
-              href={`/quran/${surah.number}`}
+              href={sitePath(`quran/${surah.number}`)}
               className="flex items-center justify-between p-5 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100/60 dark:border-emerald-900/60 hover:border-emerald-500 hover:shadow-md transition-all group"
             >
               <div className="flex items-center space-x-4">

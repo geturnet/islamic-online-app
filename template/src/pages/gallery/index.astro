@@ -1,0 +1,44 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+import '../../styles/global.css';
+
+const images = [
+  { title: 'Quran study', alt: 'An open Quran in a quiet study setting', url: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1000&q=80' },
+  { title: 'A place for reflection', alt: 'A peaceful mosque interior', url: 'https://images.unsplash.com/photo-1585036156171-384164a8c675?w=1000&q=80' },
+  { title: 'A moment of prayer', alt: 'A calm space for prayer and reflection', url: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1000&q=80' },
+  { title: 'Islamic architecture', alt: 'Decorative architecture and patterns', url: 'https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=1000&q=80' },
+  { title: 'Community and worship', alt: 'A mosque courtyard in daylight', url: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1000&q=80' },
+  { title: 'A study of faith', alt: 'Books arranged for reading and study', url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1000&q=80' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Browse a small gallery of Islamic study, worship, and architecture photography." />
+    <title>Islamic Gallery | Islamic Online</title>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <Header client:load currentLang="en" />
+    <main class="mx-auto max-w-7xl px-4 py-10">
+      <header class="max-w-3xl">
+        <p class="font-semibold uppercase tracking-widest text-emerald-700">Gallery</p>
+        <h1 class="mt-2 text-4xl font-extrabold text-emerald-950">Images for reflection</h1>
+        <p class="mt-3 leading-7 text-gray-600">A visual collection around learning, worship, and Islamic architecture. Images are served by Unsplash and remain subject to their source terms.</p>
+      </header>
+      <div class="my-6"><AdSlot position="in-article" slotId="1222556839" /></div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {images.map((image) => (
+          <figure class="overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm">
+            <img src={image.url} alt={image.alt} class="h-64 w-full object-cover" loading="lazy" />
+            <figcaption class="p-4 font-semibold text-emerald-950">{image.title}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

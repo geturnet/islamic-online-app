@@ -10,7 +10,6 @@ export default function AdSlot({ position, slotId = '1222556839' }: AdSlotProps)
       
       {/* Google AdSense Unit */}
       <div className="ad-inner min-h-[90px] flex items-center justify-center">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9372551067994918" crossorigin="anonymous"></script>
         <ins className="adsbygoogle"
              style={{ display: 'block' }}
              data-ad-client="ca-pub-9372551067994918"

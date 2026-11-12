@@ -10,6 +10,7 @@ export default function CalendarWidget({ currentLang = 'en' }: CalendarWidgetPro
   const [gregorianDate, setGregorianDate] = useState<string>('');
   const [convertedResult, setConvertedResult] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   // Fetch hari ini dari Aladhan API
   useEffect(() => {
@@ -21,16 +22,21 @@ export default function CalendarWidget({ currentLang = 'en' }: CalendarWidgetPro
 
     setGregorianDate(`${year}-${month}-${day}`);
 
-    fetch(`https://api.alquran.cloud/v1/gregorianToHijri/${formattedDate}`)
-      .then((res) => res.json())
+    fetch(`https://api.aladhan.com/v1/gToH?date=${formattedDate}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Calendar service returned ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
-        if (data.code === 200) {
-          setHijriDate(data.data.hijri);
-          setConvertedResult(data.data);
-        }
+        if (data.code !== 200 || !data.data?.hijri) throw new Error('The current Hijri date is unavailable.');
+        setHijriDate(data.data.hijri);
+        setConvertedResult(data.data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((requestError: unknown) => {
+        setError(requestError instanceof Error ? requestError.message : 'Unable to load the current Hijri date.');
+        setLoading(false);
+      });
   }, []);
 
   // Handler konversi tanggal Masehi ke Hijriyah
@@ -42,13 +48,14 @@ export default function CalendarWidget({ currentLang = 'en' }: CalendarWidgetPro
     const formatted = `${day}-${month}-${year}`;
 
     try {
-      const res = await fetch(`https://api.alquran.cloud/v1/gregorianToHijri/${formatted}`);
+      const res = await fetch(`https://api.aladhan.com/v1/gToH?date=${formatted}`);
+      if (!res.ok) throw new Error(`Calendar service returned ${res.status}`);
       const data = await res.json();
-      if (data.code === 200) {
-        setConvertedResult(data.data);
-      }
-    } catch (err) {
-      console.error('Conversion error', err);
+      if (data.code !== 200 || !data.data?.hijri) throw new Error('The selected Hijri date is unavailable.');
+      setConvertedResult(data.data);
+      setError('');
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : 'Unable to convert this date.');
     }
   };
 
@@ -83,7 +90,7 @@ export default function CalendarWidget({ currentLang = 'en' }: CalendarWidgetPro
       <AdSlot position="in-article" slotId="1222556839" />
 
       {/* Date Converter Section */}
-      <div className="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
+      <div id="date-converter" className="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900">
         <h3 className="text-xl font-bold text-emerald-900 dark:text-emerald-100 mb-2">
           📅 Gregorian to Hijri Date Converter
         </h3>
@@ -105,6 +112,8 @@ export default function CalendarWidget({ currentLang = 'en' }: CalendarWidgetPro
             Convert Date
           </button>
         </form>
+
+        {error && <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
 
         {/* Hasil Konversi */}
         {convertedResult && (

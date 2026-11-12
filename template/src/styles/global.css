@@ -39,7 +39,7 @@
     @apply text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 block mb-2 font-semibold;
   }
 
-  /* Typography Khusus Artikel SEO (3,000+ Kata) */
+  /* Editorial content typography */
   .article-content h2 {
     @apply text-2xl md:text-3xl font-bold mt-10 mb-4 text-emerald-900 dark:text-emerald-300 border-b border-emerald-100 dark:border-emerald-900 pb-2;
   }

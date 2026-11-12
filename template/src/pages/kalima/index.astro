@@ -1,0 +1,46 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+import '../../styles/global.css';
+
+const kalimas = [
+  { title: 'Tahlil', arabic: 'لَا إِلَٰهَ إِلَّا اللَّهُ', transliteration: 'La ilaha illallah', meaning: 'There is no deity worthy of worship except Allah.' },
+  { title: 'Shahada', arabic: 'مُحَمَّدٌ رَسُولُ اللَّهِ', transliteration: 'Muhammadur rasulullah', meaning: 'Muhammad is the Messenger of Allah.' },
+  { title: 'Tasbih', arabic: 'سُبْحَانَ اللَّهِ', transliteration: 'Subhanallah', meaning: 'Glory be to Allah.' },
+  { title: 'Tahmid', arabic: 'الْحَمْدُ لِلَّهِ', transliteration: 'Alhamdulillah', meaning: 'All praise is for Allah.' },
+  { title: 'Takbir', arabic: 'اللَّهُ أَكْبَرُ', transliteration: 'Allahu Akbar', meaning: 'Allah is the Greatest.' },
+  { title: 'Hawqala', arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', transliteration: 'La hawla wa la quwwata illa billah', meaning: 'There is no power or strength except through Allah.' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Explore frequently recited Islamic declarations and remembrance with Arabic, transliteration and meaning." />
+    <title>Kalima and Dhikr | Islamic Online</title>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <Header client:load currentLang="en" />
+    <main class="mx-auto max-w-7xl space-y-8 px-4 py-10">
+      <header class="max-w-3xl">
+        <p class="font-semibold uppercase tracking-widest text-emerald-700">Words of remembrance</p>
+        <h1 class="mt-2 text-4xl font-extrabold text-emerald-950">Kalima and Dhikr</h1>
+        <p class="mt-3 text-gray-600">A simple reference for commonly recited words of faith and remembrance. Transliteration is an aid and does not replace learning correct pronunciation.</p>
+      </header>
+      <AdSlot position="in-article" slotId="1222556839" />
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {kalimas.map((item) => (
+          <article class="rounded-2xl border border-emerald-100 bg-white p-6 shadow-sm">
+            <h2 class="font-bold text-emerald-900">{item.title}</h2>
+            <p lang="ar" dir="rtl" class="my-5 text-right text-3xl leading-loose text-emerald-800">{item.arabic}</p>
+            <p class="font-medium">{item.transliteration}</p>
+            <p class="mt-2 text-sm text-gray-600">{item.meaning}</p>
+          </article>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -18,9 +18,9 @@ export default function PrayerTimesWidget({ currentLang = 'en' }: PrayerTimesWid
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(
-        `https://api.aladhan.com/v1/timingsByCity?city=${cityName}&country=${countryName}&method=2`
-      );
+      const params = new URLSearchParams({ city: cityName, country: countryName, method: '2' });
+      const response = await fetch(`https://api.aladhan.com/v1/timingsByCity?${params}`);
+      if (!response.ok) throw new Error(`Prayer time service returned ${response.status}`);
       const data = await response.json();
       if (data.code === 200) {
         setTimings(data.data.timings);
@@ -29,7 +29,7 @@ export default function PrayerTimesWidget({ currentLang = 'en' }: PrayerTimesWid
         setError('Failed to load prayer times.');
       }
     } catch (err) {
-      setError('Network error while fetching prayer times.');
+      setError(err instanceof Error ? err.message : 'Network error while fetching prayer times.');
     } finally {
       setLoading(false);
     }
@@ -37,30 +37,41 @@ export default function PrayerTimesWidget({ currentLang = 'en' }: PrayerTimesWid
 
   // Get user location using browser geolocation
   const detectLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            const res = await fetch(
-              `https://api.aladhan.com/v1/timings ?latitude=${latitude}&longitude=${longitude}&method=2`
-            );
-            const data = await res.json();
-            if (data.code === 200) {
-              setTimings(data.data.timings);
-              setDateInfo(data.data.date);
-              setCity('Current Location');
-              setCountry('');
-            }
-          } catch (e) {
-            setError('Could not fetch times for your coordinates.');
-          }
-        },
-        () => {
-          setError('Geolocation permission denied. Showing default city.');
-        }
-      );
+    if (!navigator.geolocation) {
+      setError('Location access is not supported by this browser.');
+      return;
     }
+    setLoading(true);
+    setError('');
+    navigator.geolocation.getCurrentPosition(
+      async ({ coords: { latitude, longitude } }) => {
+        try {
+          const params = new URLSearchParams({
+            latitude: String(latitude),
+            longitude: String(longitude),
+            method: '2',
+          });
+          const response = await fetch(`https://api.aladhan.com/v1/timings?${params}`);
+          if (!response.ok) throw new Error(`Prayer time service returned ${response.status}`);
+          const data = await response.json();
+          if (data.code !== 200) throw new Error('Prayer times are unavailable for this location.');
+          setTimings(data.data.timings);
+          setDateInfo(data.data.date);
+          setCity('Current Location');
+          setCountry('');
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'Could not fetch times for your coordinates.');
+        } finally {
+          setLoading(false);
+        }
+      },
+      (error) => {
+        setError(error.code === error.PERMISSION_DENIED
+          ? 'Location permission was denied. Showing the selected city instead.'
+          : 'Unable to determine your location. Showing the selected city instead.');
+        setLoading(false);
+      }
+    );
   };
 
   useEffect(() => {
@@ -77,7 +88,7 @@ export default function PrayerTimesWidget({ currentLang = 'en' }: PrayerTimesWid
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-emerald-100 dark:border-emerald-900">
+    <div id="prayer-widget" className="max-w-4xl mx-auto p-4 sm:p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-emerald-100 dark:border-emerald-900">
       
       {/* Header & Location Controls */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-6 border-b border-gray-100 dark:border-gray-800 gap-4">
@@ -99,19 +110,26 @@ export default function PrayerTimesWidget({ currentLang = 'en' }: PrayerTimesWid
           </button>
           
           <select
-            value={city}
+            value={city === 'Current Location' ? 'current' : `${city}|${country}`}
             onChange={(e) => {
-              setCity(e.target.value);
-              fetchPrayerTimes(e.target.value, country);
+              if (e.target.value === 'current') {
+                detectLocation();
+                return;
+              }
+              const [nextCity, nextCountry] = e.target.value.split('|');
+              setCity(nextCity);
+              setCountry(nextCountry);
+              fetchPrayerTimes(nextCity, nextCountry);
             }}
             className="px-4 py-2 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-medium focus:outline-none"
           >
-            <option value="Semarang">Semarang</option>
-            <option value="Jakarta">Jakarta</option>
-            <option value="Mecca">Mecca</option>
-            <option value="Medina">Medina</option>
-            <option value="London">London</option>
-            <option value="New York">New York</option>
+            <option value="current">Current location</option>
+            <option value="Semarang|Indonesia">Semarang, Indonesia</option>
+            <option value="Jakarta|Indonesia">Jakarta, Indonesia</option>
+            <option value="Mecca|Saudi Arabia">Mecca, Saudi Arabia</option>
+            <option value="Medina|Saudi Arabia">Medina, Saudi Arabia</option>
+            <option value="London|United Kingdom">London, United Kingdom</option>
+            <option value="New York|United States">New York, United States</option>
           </select>
         </div>
       </div>

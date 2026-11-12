@@ -3,6 +3,16 @@ import Header from '../components/Header.tsx';
 import Footer from '../components/Footer.tsx';
 import Sidebar from '../components/Sidebar.tsx';
 import AdSlot from '../components/AdSlot.tsx';
+import '../styles/global.css';
+const base = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}/`;
+const moreFeatures = [
+  { title: 'Daily Dua', description: 'Common supplications with Arabic, transliteration, and meaning.', href: 'dua', icon: '🤲' },
+  { title: 'Islamic Calendar', description: 'Explore the Hijri calendar and convert Gregorian dates.', href: 'calendar', icon: '🌙' },
+  { title: '99 Names', description: 'Browse the commonly presented list of Asma ul Husna.', href: 'names', icon: '✨' },
+  { title: 'Kalima', description: 'Read well-known declarations and words of remembrance.', href: 'kalima', icon: '📿' },
+  { title: 'Knowledge', description: 'Read practical introductory guides on faith and worship.', href: 'articles', icon: '📚' },
+  { title: 'Islamic Gallery', description: 'Browse images of study, worship, and architecture.', href: 'gallery', icon: '🖼️' },
+];
 ---
 
 <html lang="en">
@@ -11,12 +21,11 @@ import AdSlot from '../components/AdSlot.tsx';
     <title>Islamic Online - Complete Islamic Digital Companion & Tools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="OqhGdJ_aNXti-vQ-L4nOPadp7cBUMCbDlnKy21nQE3c" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
     
     {/* Global Header with Language Selector & Nav */}
-    <Header currentLang="en" />
+    <Header client:load currentLang="en" />
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
@@ -27,19 +36,19 @@ import AdSlot from '../components/AdSlot.tsx';
         </div>
         <div class="max-w-2xl relative z-10">
           <span class="text-xs uppercase tracking-widest bg-emerald-800/80 px-3 py-1 rounded-full text-emerald-200 inline-block mb-4">
-            Welcome to Islamic Online v2026
+            Islamic Online
           </span>
           <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
             Your Comprehensive Digital Islamic Companion
           </h1>
           <p class="text-emerald-100 text-base md:text-lg mb-8 leading-relaxed">
-            Explore verified Al-Quran chapters, authentic Hadith collections, accurate daily prayer schedules, Qibla direction, Zakat calculation, and digital Dhikr tools across 10 global languages.
+            Read Quran chapters, browse major Hadith collections, estimate daily prayer times, find the Qibla, and use everyday Islamic tools. Core navigation is available in ten languages.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="/quran" class="px-6 py-3 bg-white text-emerald-900 font-bold rounded-xl shadow-md hover:bg-emerald-50 transition">
+            <a href={`${base}quran`} class="px-6 py-3 bg-white text-emerald-900 font-bold rounded-xl shadow-md hover:bg-emerald-50 transition">
               📖 Read Al-Quran
             </a>
-            <a href="/prayer-times" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition border border-emerald-500">
+            <a href={`${base}prayer-times`} class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition border border-emerald-500">
               ⏰ Prayer Times
             </a>
           </div>
@@ -68,40 +77,40 @@ import AdSlot from '../components/AdSlot.tsx';
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Feature 1: Quran */}
-              <a href="/quran" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}quran`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   📖
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Al-Quran Al-Kareem</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Read all 114 Surahs with Uthmani Arabic script, English translations, and audio verses.
+                  Browse all 114 surahs with Arabic script and English translation.
                 </p>
               </a>
 
               {/* Feature 2: Hadith */}
-              <a href="/hadith" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}hadith`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   📜
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Authentic Hadiths</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Explore canonical collections including Sahih al-Bukhari, Sahih Muslim, and Sunan an-Nasa'i.
+                  Browse reference details for major Hadith collections, including Sahih al-Bukhari and Sahih Muslim.
                 </p>
               </a>
 
               {/* Feature 3: Prayer Times */}
-              <a href="/prayer-times" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}prayer-times`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   ⏰
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Accurate Prayer Times</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Real-time GPS geolocation azan schedules, monthly timetables, and prayer books.
+                  City and location-based prayer estimates, plus an optional yearly schedule.
                 </p>
               </a>
 
               {/* Feature 4: Qibla Compass */}
-              <a href="/qibla" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}qibla`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   🕋
                 </div>
@@ -112,18 +121,18 @@ import AdSlot from '../components/AdSlot.tsx';
               </a>
 
               {/* Feature 5: Zakat Calculator */}
-              <a href="/zakat-calculator" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}zakat-calculator`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   💰
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">Zakat Calculator</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Compute your annual wealth obligation (gold, silver, cash, business) based on 85g nisab.
+                  Estimate Zakat on entered assets using a selected gold or silver nisab.
                 </p>
               </a>
 
               {/* Feature 6: Digital Tasbih */}
-              <a href="/tasbih" class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
+              <a href={`${base}tasbih`} class="p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-emerald-100 dark:border-emerald-900 hover:border-emerald-500 transition group">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
                   📿
                 </div>
@@ -133,6 +142,19 @@ import AdSlot from '../components/AdSlot.tsx';
                 </p>
               </a>
 
+            </div>
+          </section>
+
+          <section>
+            <h2 class="mb-5 text-2xl font-bold text-emerald-900 dark:text-emerald-100">More to explore</h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {moreFeatures.map((feature) => (
+                <a href={`${base}${feature.href}`} class="rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-400 hover:shadow-md">
+                  <span class="text-2xl" aria-hidden="true">{feature.icon}</span>
+                  <h3 class="mt-3 font-bold text-emerald-950">{feature.title}</h3>
+                  <p class="mt-1 text-sm leading-6 text-gray-600">{feature.description}</p>
+                </a>
+              ))}
             </div>
           </section>
 
@@ -147,16 +169,19 @@ import AdSlot from '../components/AdSlot.tsx';
               Islamic Knowledge Hub & SEO Articles
             </h2>
             <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Islamic Online features over 100 in-depth scholarly articles (3,000+ words each) covering Islamic jurisprudence, Tafsir sciences, spiritual growth, and historical heritage across 10 global languages.
+              Explore our growing collection of practical guides on Quran, worship, and Muslim daily life. Articles are written in English, with core navigation available in ten languages.
             </p>
             <div class="flex items-center space-x-4">
               <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full">
-                100+ Articles Published
+                Knowledge library
               </span>
               <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full">
-                Multi-Language SEO
+                English articles
               </span>
             </div>
+            <a href={`${base}articles`} class="mt-6 inline-flex rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white hover:bg-emerald-800">
+              Explore the guides →
+            </a>
           </section>
 
         </div>

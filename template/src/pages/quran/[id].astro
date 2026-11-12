@@ -3,6 +3,8 @@ import Header from '../../components/Header.tsx';
 import Footer from '../../components/Footer.tsx';
 import Sidebar from '../../components/Sidebar.tsx';
 import AdSlot from '../../components/AdSlot.tsx';
+import '../../styles/global.css';
+const base = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}/`;
 
 // Fungsi untuk membuat path statis untuk 114 Surah saat build
 export async function getStaticPaths() {
@@ -31,10 +33,9 @@ const englishData = json.data[1];
     <meta charset="utf-8" />
     <title>Surah {arabicData.englishName} ({arabicData.name}) - Islamic Online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
-    <Header currentLang="en" />
+    <Header client:load currentLang="en" />
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div class="flex flex-col lg:flex-row gap-8">
@@ -109,7 +110,7 @@ const englishData = json.data[1];
           <div class="flex justify-between items-center pt-4">
             {arabicData.number > 1 ? (
               <a 
-                href={`/quran/${arabicData.number - 1}`}
+                href={`${base}quran/${arabicData.number - 1}`}
                 class="px-5 py-3 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold rounded-xl text-sm hover:bg-emerald-100 transition"
               >
                 ← Previous Surah
@@ -117,7 +118,7 @@ const englishData = json.data[1];
             ) : <div />}
 
             <a 
-              href="/quran"
+              href={`${base}quran`}
               class="px-5 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold rounded-xl text-sm hover:bg-gray-200 transition"
             >
               📖 Back to Index
@@ -125,7 +126,7 @@ const englishData = json.data[1];
 
             {arabicData.number < 114 ? (
               <a 
-                href={`/quran/${arabicData.number + 1}`}
+                href={`${base}quran/${arabicData.number + 1}`}
                 class="px-5 py-3 bg-emerald-600 text-white font-semibold rounded-xl text-sm hover:bg-emerald-700 transition shadow-sm"
               >
                 Next Surah →

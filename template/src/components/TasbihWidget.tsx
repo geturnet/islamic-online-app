@@ -13,7 +13,7 @@ export default function TasbihWidget({ currentLang = 'en' }: TasbihWidgetProps) 
   const dhikrOptions = [
     { label: 'Subhanallah (سُبْحَانَ ٱللَّٰهِ)', value: 'Subhanallah', arabic: 'سُبْحَانَ ٱللَّٰهِ' },
     { label: 'Alhamdulillah (ٱلْحَمْدُ لِلَّٰهِ)', value: 'Alhamdulillah', arabic: 'ٱلْحَمْدُ لِلَّٰهِ' },
-    { label: 'Allahu Akbar (ٱللَّٰهُ أَكْبَرu)', value: 'Allahu Akbar', arabic: 'ٱللَّٰهُ أَكْبَرُ' },
+    { label: 'Allahu Akbar (ٱللَّٰهُ أَكْبَرُ)', value: 'Allahu Akbar', arabic: 'ٱللَّٰهُ أَكْبَرُ' },
     { label: 'Astaghfirullah (أَسْتَغْفِرُ ٱللَّٰهَ)', value: 'Astaghfirullah', arabic: 'أَسْتَغْفِرُ ٱللَّٰهَ' },
     { label: 'La ilaha illallah (لَا إِلَٰهَ إِلَّا ٱللَّٰهُ)', value: 'La ilaha illallah', arabic: 'لَا إِلَٰهَ إِلَّا ٱللَّٰهُ' },
   ];
@@ -69,6 +69,8 @@ export default function TasbihWidget({ currentLang = 'en' }: TasbihWidgetProps) 
       {/* Counter Display Utama */}
       <div className="my-8 flex flex-col items-center justify-center">
         <button
+          type="button"
+          aria-label={`Add one ${dhikrType}`}
           onClick={handleIncrement}
           className="w-48 h-48 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 transition-all shadow-lg flex flex-col items-center justify-center text-white border-8 border-emerald-100 dark:border-emerald-950 focus:outline-none cursor-pointer group"
         >
@@ -80,10 +82,19 @@ export default function TasbihWidget({ currentLang = 'en' }: TasbihWidgetProps) 
       {/* Target & Reset Controls */}
       <div className="flex items-center justify-between px-4 mb-8">
         <div className="text-left">
-          <span className="text-xs text-gray-400 block">Target Count</span>
-          <span className="text-lg font-bold text-gray-700 dark:text-gray-300">{target}</span>
+          <label htmlFor="tasbih-target" className="text-xs text-gray-400 block">Target Count</label>
+          <input
+            id="tasbih-target"
+            type="number"
+            min="1"
+            value={target}
+            onChange={(event) => setTarget(Math.max(1, Number(event.target.value) || 1))}
+            className="mt-1 w-24 rounded-lg border border-gray-200 bg-white px-2 py-1 text-lg font-bold text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          />
+          <span className="sr-only">{count >= target ? 'Target reached' : `${Math.max(0, target - count)} remaining`}</span>
         </div>
         <button
+          type="button"
           onClick={handleReset}
           className="px-4 py-2 bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 rounded-xl text-xs font-bold transition shadow-sm"
         >

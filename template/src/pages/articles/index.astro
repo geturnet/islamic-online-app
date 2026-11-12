@@ -1,0 +1,52 @@
+---
+import Header from '../../components/Header.tsx';
+import Footer from '../../components/Footer.tsx';
+import Sidebar from '../../components/Sidebar.tsx';
+import AdSlot from '../../components/AdSlot.tsx';
+import { ARTICLES } from '../../data/articles';
+import '../../styles/global.css';
+
+const base = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}/`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Practical English guides on Quran, prayer, the Hijri calendar, Zakat, and daily remembrance." />
+    <title>Islamic Knowledge and Guides | Islamic Online</title>
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <Header client:load currentLang="en" />
+    <main class="mx-auto max-w-7xl px-4 py-10">
+      <div class="grid gap-8 lg:grid-cols-3">
+        <section class="lg:col-span-2">
+          <p class="font-semibold uppercase tracking-widest text-emerald-700">Knowledge</p>
+          <h1 class="mt-2 text-4xl font-extrabold text-emerald-950">Islamic guides</h1>
+          <p class="mt-3 max-w-3xl leading-7 text-gray-600">Practical introductory articles with references to related reading and tools. These guides are educational and do not replace qualified religious advice.</p>
+          <div class="my-6"><AdSlot position="in-article" slotId="1222556839" /></div>
+          <div class="space-y-5">
+            {ARTICLES.map((article, index) => (
+              <article class="overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm">
+                <a href={`${base}articles/${article.slug}`} class="group grid sm:grid-cols-[220px_1fr]">
+                  <img src={article.image} alt="" class="h-48 w-full object-cover sm:h-full" loading="lazy" />
+                  <div class="p-5">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">{article.category}</span>
+                    <h2 class="mt-2 text-xl font-bold text-emerald-950 group-hover:text-emerald-700">{article.title}</h2>
+                    <p class="mt-2 text-sm leading-6 text-gray-600">{article.description}</p>
+                    <span class="mt-4 inline-block text-sm font-semibold text-emerald-700">Read guide →</span>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+        <aside class="space-y-6">
+          <AdSlot position="sidebar" slotId="1222556839" />
+          <Sidebar />
+        </aside>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

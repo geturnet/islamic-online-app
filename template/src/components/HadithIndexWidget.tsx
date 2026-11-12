@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AdSlot from './AdSlot';
+import { sitePath } from '../lib/site';
 
 interface HadithBook {
   id: string;
@@ -128,7 +129,7 @@ export default function HadithIndexWidget() {
             <div className="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
               <span className="text-xs text-gray-400">Verified Sunnah Corpus</span>
               <a
-                href={`/hadith/${book.id}`}
+                href={sitePath('hadith')}
                 className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition shadow-sm"
               >
                 Explore Hadiths →

@@ -322,6 +322,11 @@ const overrides: Record<Exclude<LangCode, "en">, Dict> = {
   },
 };
 
+export function translate(lang: LangCode, key: string) {
+  const dict = lang === "en" ? en : { ...en, ...overrides[lang] };
+  return dict[key] ?? en[key] ?? key;
+}
+
 interface LangContextValue {
   lang: LangCode;
   setLang: (code: LangCode) => void;
@@ -333,8 +338,7 @@ const LanguageContext = createContext<LangContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<LangCode>("en");
-  const dict = lang === "en" ? en : { ...en, ...overrides[lang] };
-  const t = (key: string) => dict[key] ?? en[key] ?? key;
+  const t = (key: string) => translate(lang, key);
   const dir = lang === "ar" || lang === "ur" ? "rtl" : "ltr";
   return (
     <LanguageContext.Provider value={{ lang, setLang, t, dir }}>

@@ -27,12 +27,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
-        working-directory: template
+        run: npm ci
 
       - name: Build Astro site
         run: npm run build
-        working-directory: template
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -40,7 +38,7 @@ jobs:
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
         with:
-          path: template/dist
+          path: dist
 
   deploy:
     needs: build
