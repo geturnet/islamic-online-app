@@ -1,0 +1,290 @@
+---
+title: "Online Tasbih Counter"
+description: "A free digital tasbih counter for dhikr after prayer. Track SubhanAllah, Alhamdulillah, Allahu Akbar, and more with this interactive tool."
+sidebarTitle: "Tasbih Counter"
+icon: "circle-dot"
+---
+
+The tasbih is a string of beads used by Muslims to keep count while performing dhikr, the remembrance of Allah. Our online tasbih counter helps you maintain your daily adhkar with a simple tap interface, progress tracking, and round completion.
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Interactive Tasbih Counter
+
+Use the counter below for your daily dhikr. Select your preferred dhikr phrase, set your target, and tap the button or press the spacebar to count.
+
+<TasbihCounter />
+
+## The Adhkar After Salah
+
+After every prescribed prayer, the Prophet Muhammad, peace be upon him, would sit and glorify Allah with specific phrases. These are among the most emphasized daily adhkar in Islam.
+
+### The Most Common Form
+
+The Prophet, peace be upon him, said to his daughter Fatimah: "Shall I not direct you to something better than a servant? When you go to bed, say SubhanAllah thirty-three times, Alhamdulillah thirty-three times, and Allahu Akbar thirty-four times." (Sahih al-Bukhari 3705, Sahih Muslim 2727)
+
+Another narration mentions this dhikr specifically after the obligatory prayers:
+
+> "Whoever glorifies Allah thirty-three times, praises Allah thirty-three times, and magnifies Allah thirty-three times after every prayer, that is ninety-nine. Then he completes it to one hundred by saying: La ilaha illallah wahdahu la sharika lahu, lahul mulku wa lahul hamdu wa huwa ala kulli shayin qadir. His sins will be forgiven, even if they are like the foam of the sea." (Sahih Muslim 597)
+
+### Recommended Counts
+
+| Dhikr | Common Count | Reference |
+| --- | --- | --- |
+| SubhanAllah | 33 times | Sahih Muslim 596 |
+| Alhamdulillah | 33 times | Sahih Muslim 596 |
+| Allahu Akbar | 34 times | Sahih Muslim 596 |
+| Complete to 100 | La ilaha illallah... | Sahih Muslim 597 |
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Virtues of Dhikr
+
+The remembrance of Allah carries immense reward and spiritual benefit. The Quran repeatedly emphasizes its importance:
+
+> "Unquestionably, by the remembrance of Allah hearts are assured." (Quran 13:28)
+
+> "O you who have believed, remember Allah with much remembrance and exalt Him morning and afternoon." (Quran 33:41-42)
+
+The Prophet, peace be upon him, said: "The example of the one who remembers his Lord and the one who does not is like the example of the living and the dead." (Sahih al-Bukhari, Sahih Muslim)
+
+He also said: "Shall I not tell you of the best of your deeds, the purest of them with your Master, the one that raises you most in ranks, and that is better for you than spending gold and silver, and better for you than meeting your enemy and striking their necks and them striking your necks?" They said: "Of course." He said: "The remembrance of Allah." (Jami at-Tirmidhi)
+
+## Etiquette of Dhikr
+
+When engaging in dhikr, Muslims are encouraged to observe the following manners:
+
+1. **Sincerity**: Perform dhikr solely for the pleasure of Allah, not for show.
+2. **Humility**: Lower your voice and be mindful of your heart's presence.
+3. **Consistency**: Regular, small amounts of dhikr are better than occasional large bursts. The Prophet, peace be upon him, said: "The deeds most loved by Allah are those done regularly, even if they are small." (Sahih al-Bukhari, Sahih Muslim)
+4. **Understanding**: Reflect on the meaning of what you are saying. Dhikr is not merely repetition but conscious remembrance.
+5. **Purity**: When possible, perform wudu (ablution) before sitting for dhikr, especially after prayer.
+6. **Right hand**: Using the right hand or fingers to count is recommended based on Prophetic practice. The Companions would count on their fingers, and the angels would count along with them.
+
+## Common Dhikr Phrases
+
+Below are the meanings of the most common phrases used in daily tasbih:
+
+| Arabic | Transliteration | Meaning |
+| --- | --- | --- |
+| سُبْحَانَ ٱللَّٰهِ | SubhanAllah | Glory be to Allah |
+| ٱلْحَمْدُ لِلَّٰهِ | Alhamdulillah | All praise is due to Allah |
+| ٱللَّٰهُ أَكْبَرُ | Allahu Akbar | Allah is the Greatest |
+| لَا إِلَٰهَ إِلَّا ٱللَّٰهُ | La ilaha illallah | There is no god but Allah |
+| أَسْتَغْفِرُ ٱللَّٰهَ | Astaghfirullah | I seek forgiveness from Allah |
+| لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّٰهِ | La hawla wa la quwwata illa billah | There is no power nor strength except with Allah |
+
+## Related
+
+- [Duas](/dua)
+- [99 Names of Allah](/99-names)
+- [The Six Kalimas](/kalima)
+- [How to Perform Salah](/articles/how-to-perform-salah)
+- [Prayer Times](/prayer-times)
+- [Articles](/articles/index)
+
+export const TasbihCounter = () => {
+  const dhikrs = [
+    { label: "SubhanAllah", arabic: "سُبْحَانَ ٱللَّٰهِ", meaning: "Glory be to Allah" },
+    { label: "Alhamdulillah", arabic: "ٱلْحَمْدُ لِلَّٰهِ", meaning: "All praise is due to Allah" },
+    { label: "Allahu Akbar", arabic: "ٱللَّٰهُ أَكْبَرُ", meaning: "Allah is the Greatest" },
+    { label: "La ilaha illallah", arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ", meaning: "There is no god but Allah" },
+    { label: "Astaghfirullah", arabic: "أَسْتَغْفِرُ ٱللَّٰهَ", meaning: "I seek forgiveness from Allah" },
+  ];
+
+  const presets = [
+    { label: "33", value: 33 },
+    { label: "99", value: 99 },
+    { label: "100", value: 100 },
+    { label: "Custom", value: 0 },
+  ];
+
+  const [count, setCount] = useState(0);
+  const [rounds, setRounds] = useState(0);
+  const [selectedDhikr, setSelectedDhikr] = useState(0);
+  const [targetMode, setTargetMode] = useState(33);
+  const [customTarget, setCustomTarget] = useState(33);
+  const [showComplete, setShowComplete] = useState(false);
+
+  const target = targetMode === 0 ? Math.max(1, Number(customTarget) || 1) : targetMode;
+
+  const progress = Math.min(count / target, 1);
+  const circumference = 2 * Math.PI * 90;
+  const strokeDashoffset = circumference * (1 - progress);
+
+  const increment = () => {
+    const next = count + 1;
+    if (next >= target) {
+      setCount(0);
+      setRounds((r) => r + 1);
+      setShowComplete(true);
+      setTimeout(() => setShowComplete(false), 1500);
+    } else {
+      setCount(next);
+    }
+  };
+
+  const reset = () => {
+    setCount(0);
+    setRounds(0);
+    setShowComplete(false);
+  };
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.code === "Space" || e.code === "Enter") {
+        e.preventDefault();
+        increment();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [count, target]);
+
+  return (
+    <div className="not-prose" style={{ border: "1px solid rgba(15,118,110,0.3)", borderRadius: 16, padding: 20, background: "rgba(15,118,110,0.06)", maxWidth: 480, margin: "0 auto" }}>
+      <div style={{ textAlign: "center", marginBottom: 16 }}>
+        <div style={{ fontSize: 14, color: "#0F766E", fontWeight: 600 }}>{dhikrs[selectedDhikr].arabic}</div>
+        <div style={{ fontSize: 13, opacity: 0.8 }}>{dhikrs[selectedDhikr].label}: {dhikrs[selectedDhikr].meaning}</div>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: 16 }}>
+        <div style={{ position: "relative", width: 200, height: 200 }}>
+          <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%", transform: "rotate(-90deg)" }}>
+            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(15,118,110,0.15)" strokeWidth={10} />
+            <circle
+              cx="100"
+              cy="100"
+              r="90"
+              fill="none"
+              stroke="#0F766E"
+              strokeWidth={10}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              style={{ transition: "stroke-dashoffset 0.3s ease" }}
+            />
+          </svg>
+          <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ fontSize: 48, fontWeight: 700, color: "#0F766E" }}>{count}</div>
+            <div style={{ fontSize: 12, opacity: 0.6 }}>of {target}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ textAlign: "center", marginBottom: 16 }}>
+        <div style={{ fontSize: 14, fontWeight: 600 }}>Rounds completed: <span style={{ color: "#D4A017" }}>{rounds}</span></div>
+      </div>
+
+      {showComplete && (
+        <div style={{ textAlign: "center", marginBottom: 12, padding: 10, borderRadius: 8, background: "rgba(212,160,23,0.15)", border: "1px solid rgba(212,160,23,0.35)", color: "#0F766E", fontWeight: 600 }}>
+          Round complete! MashaAllah.
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+        {presets.map((p) => (
+          <button
+            key={p.label}
+            type="button"
+            onClick={() => setTargetMode(p.value)}
+            style={{
+              flex: 1,
+              padding: "8px 0",
+              borderRadius: 8,
+              border: targetMode === p.value ? "2px solid #0F766E" : "1px solid rgba(15,118,110,0.3)",
+              background: targetMode === p.value ? "rgba(15,118,110,0.12)" : "transparent",
+              color: "inherit",
+              font: "inherit",
+              cursor: "pointer",
+              fontSize: 13,
+              fontWeight: targetMode === p.value ? 700 : 400,
+            }}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
+      {targetMode === 0 && (
+        <div style={{ marginBottom: 16 }}>
+          <label style={{ display: "block", fontSize: 13, marginBottom: 4 }}>Custom target</label>
+          <input
+            type="number"
+            min={1}
+            value={customTarget}
+            onChange={(e) => setCustomTarget(Math.max(1, Number(e.target.value)))}
+            style={{
+              width: "100%",
+              padding: "8px 12px",
+              borderRadius: 8,
+              border: "1px solid rgba(15,118,110,0.35)",
+              background: "transparent",
+              color: "inherit",
+              font: "inherit",
+            }}
+          />
+        </div>
+      )}
+
+      <div style={{ marginBottom: 16 }}>
+        <label style={{ display: "block", fontSize: 13, marginBottom: 4 }}>Dhikr phrase</label>
+        <select
+          value={selectedDhikr}
+          onChange={(e) => setSelectedDhikr(Number(e.target.value))}
+          style={{
+            width: "100%",
+            padding: "8px 12px",
+            borderRadius: 8,
+            border: "1px solid rgba(15,118,110,0.35)",
+            background: "transparent",
+            color: "inherit",
+            font: "inherit",
+          }}
+        >
+          {dhikrs.map((d, i) => (
+            <option key={d.label} value={i}>{d.label}: {d.meaning}</option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ display: "flex", gap: 10 }}>
+        <button
+          type="button"
+          onClick={increment}
+          style={{
+            flex: 1,
+            padding: "14px 0",
+            borderRadius: 10,
+            border: "none",
+            background: "#0F766E",
+            color: "#fff",
+            font: "inherit",
+            fontSize: 16,
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          Tap to Count
+        </button>
+        <button
+          type="button"
+          onClick={reset}
+          style={{
+            padding: "14px 18px",
+            borderRadius: 10,
+            border: "1px solid rgba(15,118,110,0.35)",
+            background: "transparent",
+            color: "inherit",
+            font: "inherit",
+            fontSize: 14,
+            cursor: "pointer",
+          }}
+        >
+          Reset
+        </button>
+      </div>
+      <div style={{ fontSize: 11, opacity: 0.5, textAlign: "center", marginTop: 8 }}>Press Space or Enter to count</div>
+    </div>
+  );
+};

@@ -1,0 +1,47 @@
+/* Islamic Online: ad slots and decorative styles */
+.io-ad {
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+  min-height: 90px;
+  max-width: 100%;
+  border: 1px dashed rgba(15, 118, 110, 0.35);
+  border-radius: 12px;
+  background: rgba(15, 118, 110, 0.04);
+  text-align: center;
+  overflow: hidden;
+}
+.io-ad-sidebar {
+  min-height: 250px;
+  margin: 1.5rem 0.5rem;
+}
+.io-ad-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+.ad-slot:empty {
+  display: block;
+  min-height: 1px;
+}
+.io-hero {
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  color: #f0fdfa;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(250, 204, 21, 0.25), transparent 40%),
+    linear-gradient(135deg, #0b3b36 0%, #0f766e 60%, #14b8a6 100%);
+}
+.io-hero h1,
+.io-hero p {
+  color: #f0fdfa;
+}
+.io-arabic {
+  font-family: "Amiri", "Scheherazade New", "Traditional Arabic", serif;
+  font-size: 1.6rem;
+  line-height: 2.4;
+  direction: rtl;
+  text-align: right;
+}

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <defs>
+    <pattern id="geo" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="#D4A017" stroke-width="0.8" opacity="0.25"/>
+      <circle cx="30" cy="30" r="3" fill="#D4A017" opacity="0.2"/>
+    </pattern>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="100%" stop-color="#134E4A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#sky)"/>
+  <rect width="1200" height="400" fill="url(#geo)"/>
+
+  
+  <g fill="#F0FDFA" opacity="0.6">
+    <circle cx="100" cy="80" r="2"/>
+    <circle cx="250" cy="50" r="1.5"/>
+    <circle cx="400" cy="90" r="2"/>
+    <circle cx="550" cy="60" r="1.5"/>
+    <circle cx="700" cy="85" r="2"/>
+    <circle cx="850" cy="55" r="1.5"/>
+    <circle cx="1000" cy="95" r="2"/>
+    <circle cx="1150" cy="70" r="1.5"/>
+  </g>
+
+  
+  <path d="M900 100 A 50 50 0 1 1 900 200 A 40 40 0 1 0 900 100 Z" fill="#D4A017" opacity="0.9"/>
+
+  
+  <g fill="#0F766E" stroke="#F0FDFA" stroke-width="1.5" opacity="0.95">
+    
+    <path d="M500 280 Q 500 180 600 180 Q 700 180 700 280 Z"/>
+    
+    <line x1="600" y1="180" x2="600" y2="150"/>
+    <circle cx="600" cy="145" r="6"/>
+    
+    <rect x="420" y="200" width="24" height="80" rx="2"/>
+    <path d="M410 200 Q 432 160 454 200 Z"/>
+    <line x1="432" y1="160" x2="432" y2="140"/>
+    <circle cx="432" cy="135" r="4"/>
+    
+    <rect x="756" y="200" width="24" height="80" rx="2"/>
+    <path d="M746 200 Q 768 160 790 200 Z"/>
+    <line x1="768" y1="160" x2="768" y2="140"/>
+    <circle cx="768" cy="135" r="4"/>
+    
+    <rect x="460" y="260" width="280" height="40" rx="2"/>
+    
+    <path d="M480 300 Q 490 270 500 300" fill="none"/>
+    <path d="M530 300 Q 540 270 550 300" fill="none"/>
+    <path d="M580 300 Q 590 270 600 300" fill="none"/>
+    <path d="M630 300 Q 640 270 650 300" fill="none"/>
+    <path d="M680 300 Q 690 270 700 300" fill="none"/>
+    
+    <path d="M460 260 Q 460 220 480 220 Q 500 220 500 260 Z"/>
+    <path d="M700 260 Q 700 220 720 220 Q 740 220 740 260 Z"/>
+  </g>
+
+  
+  <rect x="0" y="380" width="1200" height="20" fill="#D4A017" opacity="0.3"/>
+  <path d="M0 380 Q 30 370 60 380 Q 90 390 120 380 Q 150 370 180 380 Q 210 390 240 380 Q 270 370 300 380 Q 330 390 360 380 Q 390 370 420 380 Q 450 390 480 380 Q 510 370 540 380 Q 570 390 600 380 Q 630 370 660 380 Q 690 390 720 380 Q 750 370 780 380 Q 810 390 840 380 Q 870 370 900 380 Q 930 390 960 380 Q 990 370 1020 380 Q 1050 390 1080 380 Q 1110 370 1140 380 Q 1170 390 1200 380" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.5"/>
+
+  
+  <text x="600" y="350" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#F0FDFA" font-weight="bold" opacity="0.95">How to Perform Salah</text>
+  <text x="600" y="375" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#D4A017" opacity="0.9">A Complete Step-by-Step Prayer Guide</text>
+</svg>

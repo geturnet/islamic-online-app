@@ -1,0 +1,315 @@
+---
+title: "Hijri to Gregorian Date Converter"
+description: "Convert between Hijri and Gregorian calendars with our interactive tool. Understand the tabular Islamic calendar and why Hijri dates vary by region."
+sidebarTitle: "Date Converter"
+icon: "arrows-rotate"
+---
+
+The Islamic calendar, also known as the Hijri calendar, is a lunar calendar consisting of 12 months in a year of 354 or 355 days. It began in 622 CE when the Prophet Muhammad, peace be upon him, migrated from Makkah to Madinah, an event known as the Hijra.
+
+Unlike the solar Gregorian calendar, the Hijri calendar is based on the cycles of the moon. This means Islamic months drift backward through the seasons by about 10 to 12 days each year, completing a full cycle roughly every 33 years.
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Interactive Date Converter
+
+Use the tool below to convert between Gregorian and Hijri dates. It uses the standard tabular Islamic calendar arithmetic, a widely accepted calculation method used in many references and software libraries.
+
+<DateConverter />
+
+<Note>
+  This converter uses the tabular Islamic calendar (arithmetic). Actual moon sighting may cause local Hijri dates to differ by one day from the calculated result, especially at the start of Ramadan and the two Eids. Some countries, such as Saudi Arabia, use the Umm al-Qura calendar, which can also differ by a day or two in certain months.
+</Note>
+
+<div className="ad-slot" data-ad="in-article" />
+
+## How the Conversion Works
+
+The tabular Islamic calendar is built on a 30-year cycle. In this cycle, 11 of the 30 years are leap years with 355 days, while the remaining 19 years have 354 days.
+
+### Leap Year Pattern
+
+The leap years in the 30-year cycle are:
+
+**Years 2, 5, 7, 10, 13, 16, 18, 21, 24, 26, and 29**
+
+In a leap year, the 12th month (Dhu al-Hijjah) has 30 days instead of 29.
+
+### Month Names
+
+| Hijri Month | Arabic Name | Days |
+| --- | --- | --- |
+| 1 | Muharram | 29 or 30 |
+| 2 | Safar | 29 or 30 |
+| 3 | Rabi al-Awwal | 29 or 30 |
+| 4 | Rabi al-Thani | 29 or 30 |
+| 5 | Jumada al-Awwal | 29 or 30 |
+| 6 | Jumada al-Thani | 29 or 30 |
+| 7 | Rajab | 29 or 30 |
+| 8 | Sha'ban | 29 or 30 |
+| 9 | Ramadan | 29 or 30 |
+| 10 | Shawwal | 29 or 30 |
+| 11 | Dhu al-Qa'dah | 29 or 30 |
+| 12 | Dhu al-Hijjah | 29 or 30 |
+
+### The Julian Day Number Method
+
+The converter uses the Julian Day Number (JDN) as an intermediate bridge between the two calendars.
+
+1. **Gregorian to JDN:** The Gregorian date is converted to a Julian Day Number using standard astronomical formulas.
+2. **JDN to Hijri:** The JDN is compared against the epoch of the Islamic calendar (JDN 1948439.5, corresponding to 1 Muharram 1 AH, which is approximately 16 July 622 CE). The number of days since the epoch determines the Hijri year, month, and day.
+3. **Hijri to JDN:** The reverse process adds the days elapsed in the Hijri calendar to the epoch JDN, then converts back to Gregorian.
+
+This arithmetic approach is consistent and reproducible, which is why it is widely used in reference tables and software. However, it does not account for actual crescent moon visibility.
+
+## Why Hijri Dates Differ by Region
+
+You may notice that some countries announce the start of Ramadan or Eid on different days. This happens for two main reasons:
+
+1. **Moon Sighting vs. Calculation:** Some communities rely on physical sighting of the new crescent moon, which depends on local weather, geography, and atmospheric conditions. Others use astronomical calculations to predict when the moon will be born.
+2. **Different Calendar Systems:** Saudi Arabia and some neighboring countries follow the Umm al-Qura calendar, which uses slightly different rules for determining month beginnings, particularly for Dhu al-Hijjah. This can lead to differences of one or two days compared to the tabular calendar.
+
+<Tip>
+  For religious observances such as fasting and Eid, follow the announcement of your local Islamic authority or community. The converter above is best for planning, historical reference, and general understanding.
+</Tip>
+
+## Related
+
+- [Islamic Calendar](/islamic-calendar)
+- [Prayer Times](/prayer-times)
+- [Ramadan Fasting Guide](/articles/ramadan-fasting-guide)
+- [Qibla Direction Finder](/tools/qibla-direction)
+
+export const DateConverter = () => {
+  const [mode, setMode] = useState("gregorian-to-hijri");
+  const [gYear, setGYear] = useState("");
+  const [gMonth, setGMonth] = useState("");
+  const [gDay, setGDay] = useState("");
+  const [hYear, setHYear] = useState("");
+  const [hMonth, setHMonth] = useState("");
+  const [hDay, setHDay] = useState("");
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+
+  const hijriMonths = [
+    "Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Thani",
+    "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban",
+    "Ramadan", "Shawwal", "Dhu al-Qa'dah", "Dhu al-Hijjah"
+  ];
+
+  const hijriMonthsAr = [
+    "مُحَرَّم", "صَفَر", "رَبِيع ٱلْأَوَّل", "رَبِيع ٱلثَّانِي",
+    "جُمَادَىٰ ٱلْأُولَىٰ", "جُمَادَىٰ ٱلثَّانِيَة", "رَجَب", "شَعْبَان",
+    "رَمَضَان", "شَوَّال", "ذُو ٱلْقَعْدَة", "ذُو ٱلْحِجَّة"
+  ];
+
+  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  const isLeapHijri = (y) => {
+    const cycle = [2, 5, 7, 10, 13, 16, 18, 21, 24, 26, 29];
+    return cycle.includes(((y - 1) % 30) + 1);
+  };
+
+  const hijriMonthLength = (y, m) => {
+    if (m === 12 && isLeapHijri(y)) return 30;
+    const odd = [1, 3, 5, 7, 9, 11];
+    return odd.includes(m) ? 30 : 29;
+  };
+
+  const gregorianToJDN = (y, m, d) => {
+    const a = Math.floor((14 - m) / 12);
+    const yy = y + 4800 - a;
+    const mm = m + 12 * a - 3;
+    return (
+      d +
+      Math.floor((153 * mm + 2) / 5) +
+      365 * yy +
+      Math.floor(yy / 4) -
+      Math.floor(yy / 100) +
+      Math.floor(yy / 400) -
+      32045
+    );
+  };
+
+  const jdnToGregorian = (jdn) => {
+    const a = jdn + 32044;
+    const b = Math.floor((4 * a + 3) / 146097);
+    const c = a - Math.floor((146097 * b) / 4);
+    const d = Math.floor((4 * c + 3) / 1461);
+    const e = c - Math.floor((1461 * d) / 4);
+    const m = Math.floor((5 * e + 2) / 153);
+    const day = e - Math.floor((153 * m + 2) / 5) + 1;
+    const month = m + 3 - 12 * Math.floor(m / 10);
+    const year = 100 * b + d - 4800 + Math.floor(m / 10);
+    return { year, month, day };
+  };
+
+  const hijriToJDN = (y, m, d) => {
+    const epoch = 1948439;
+    const yearCycle = Math.floor((y - 1) / 30);
+    const yearInCycle = ((y - 1) % 30) + 1;
+    const cycleLeapCounts = [0, 1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 7, 7, 8, 8, 9, 10, 10, 11, 11, 12, 13, 13, 14, 14, 15, 16, 16, 17, 17];
+    const leapsBefore = yearCycle * 11 + cycleLeapCounts[yearInCycle - 1];
+    const yearsBefore = (y - 1) * 354 + leapsBefore;
+    let monthsBefore = 0;
+    for (let i = 1; i < m; i++) monthsBefore += hijriMonthLength(y, i);
+    return epoch + yearsBefore + monthsBefore + d - 1;
+  };
+
+  const jdnToHijri = (jdn) => {
+    const epoch = 1948439;
+    const daysSince = jdn - epoch;
+    let y = 1;
+    let remaining = daysSince;
+    while (true) {
+      const yearDays = isLeapHijri(y) ? 355 : 354;
+      if (remaining < yearDays) break;
+      remaining -= yearDays;
+      y++;
+    }
+    let m = 1;
+    while (true) {
+      const monthDays = hijriMonthLength(y, m);
+      if (remaining < monthDays) break;
+      remaining -= monthDays;
+      m++;
+    }
+    const d = remaining + 1;
+    return { year: y, month: m, day: d };
+  };
+
+  const weekdayFromJDN = (jdn) => {
+    return weekdays[((jdn + 1) % 7 + 7) % 7];
+  };
+
+  const convert = () => {
+    setError("");
+    setResult(null);
+    try {
+      if (mode === "gregorian-to-hijri") {
+        const y = parseInt(gYear, 10);
+        const m = parseInt(gMonth, 10);
+        const d = parseInt(gDay, 10);
+        if (isNaN(y) || isNaN(m) || isNaN(d)) { setError("Please enter a valid Gregorian date."); return; }
+        if (m < 1 || m > 12) { setError("Gregorian month must be 1 to 12."); return; }
+        const dim = new Date(y, m, 0).getDate();
+        if (d < 1 || d > dim) { setError("Day must be 1 to " + dim + " for this month."); return; }
+        const jdn = gregorianToJDN(y, m, d);
+        const h = jdnToHijri(jdn);
+        setResult({
+          label: "Hijri Date",
+          text: h.day + " " + hijriMonths[h.month - 1] + " " + h.year + " AH",
+          arabic: h.day + " " + hijriMonthsAr[h.month - 1] + " " + h.year + " هـ",
+          weekday: weekdayFromJDN(jdn)
+        });
+      } else {
+        const y = parseInt(hYear, 10);
+        const m = parseInt(hMonth, 10);
+        const d = parseInt(hDay, 10);
+        if (isNaN(y) || isNaN(m) || isNaN(d)) { setError("Please enter a valid Hijri date."); return; }
+        if (m < 1 || m > 12) { setError("Hijri month must be 1 to 12."); return; }
+        if (d < 1 || d > 30) { setError("Hijri day must be 1 to 30."); return; }
+        const maxDay = hijriMonthLength(y, m);
+        if (d > maxDay) { setError("This Hijri month has " + maxDay + " days."); return; }
+        const jdn = hijriToJDN(y, m, d);
+        const g = jdnToGregorian(jdn);
+        const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        setResult({
+          label: "Gregorian Date",
+          text: g.day + " " + monthNames[g.month - 1] + " " + g.year,
+          weekday: weekdayFromJDN(jdn)
+        });
+      }
+    } catch (e) {
+      setError("Conversion failed. Please check your input.");
+    }
+  };
+
+  const setToday = () => {
+    const today = new Date();
+    if (mode === "gregorian-to-hijri") {
+      setGYear(today.getFullYear().toString());
+      setGMonth((today.getMonth() + 1).toString());
+      setGDay(today.getDate().toString());
+    } else {
+      const jdn = gregorianToJDN(today.getFullYear(), today.getMonth() + 1, today.getDate());
+      const h = jdnToHijri(jdn);
+      setHYear(h.year.toString());
+      setHMonth(h.month.toString());
+      setHDay(h.day.toString());
+    }
+    setTimeout(convert, 0);
+  };
+
+  return (
+    <div className="not-prose" style={{ border: "1px solid rgba(15,118,110,0.3)", borderRadius: 12, padding: 20, background: "rgba(15,118,110,0.06)" }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() => setMode("gregorian-to-hijri")}
+          style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: mode === "gregorian-to-hijri" ? "#0F766E" : "transparent", color: mode === "gregorian-to-hijri" ? "#fff" : "inherit", fontSize: 14, cursor: "pointer" }}
+        >
+          Gregorian to Hijri
+        </button>
+        <button
+          type="button"
+          onClick={() => setMode("hijri-to-gregorian")}
+          style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: mode === "hijri-to-gregorian" ? "#0F766E" : "transparent", color: mode === "hijri-to-gregorian" ? "#fff" : "inherit", fontSize: 14, cursor: "pointer" }}
+        >
+          Hijri to Gregorian
+        </button>
+      </div>
+
+      {mode === "gregorian-to-hijri" ? (
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Year
+            <input type="number" value={gYear} onChange={(e) => setGYear(e.target.value)} placeholder="YYYY" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Month
+            <input type="number" min={1} max={12} value={gMonth} onChange={(e) => setGMonth(e.target.value)} placeholder="MM" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Day
+            <input type="number" min={1} max={31} value={gDay} onChange={(e) => setGDay(e.target.value)} placeholder="DD" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+        </div>
+      ) : (
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Year
+            <input type="number" value={hYear} onChange={(e) => setHYear(e.target.value)} placeholder="YYYY" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Month (1-12)
+            <input type="number" min={1} max={12} value={hMonth} onChange={(e) => setHMonth(e.target.value)} placeholder="MM" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 100 }}>
+            Day (1-30)
+            <input type="number" min={1} max={30} value={hDay} onChange={(e) => setHDay(e.target.value)} placeholder="DD" style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }} />
+          </label>
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <button type="button" onClick={convert} style={{ padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "#0F766E", color: "#fff", fontSize: 14, cursor: "pointer" }}>
+          Convert
+        </button>
+        <button type="button" onClick={setToday} style={{ padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14, cursor: "pointer" }}>
+          Today
+        </button>
+      </div>
+
+      {error && <div style={{ marginTop: 12, fontSize: 14, color: "#b91c1c" }}>{error}</div>}
+      {result && (
+        <div style={{ marginTop: 16, padding: 14, borderRadius: 10, border: "1px solid rgba(15,118,110,0.3)", background: "rgba(15,118,110,0.08)" }}>
+          <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>{result.label}</div>
+          <div style={{ fontSize: 15, marginBottom: 4 }}>{result.text}</div>
+          {result.arabic && <p className="io-arabic" style={{ fontSize: 16, marginBottom: 4 }}>{result.arabic}</p>}
+          <div style={{ fontSize: 13, opacity: 0.8 }}>{result.weekday}</div>
+        </div>
+      )}
+    </div>
+  );
+};

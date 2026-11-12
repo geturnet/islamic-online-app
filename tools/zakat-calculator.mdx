@@ -1,0 +1,280 @@
+---
+title: "Zakat Calculator: Calculate Your Zakat Easily"
+description: "Calculate your annual Zakat obligation with our interactive tool. Understand nisab, zakatable assets, deductions, and the 8 categories of eligible recipients."
+sidebarTitle: "Zakat Calculator"
+icon: "calculator"
+---
+
+Zakat is one of the Five Pillars of Islam, an obligatory annual charitable payment made by Muslims who meet specific wealth thresholds. It purifies wealth, supports the needy, and fosters social solidarity.
+
+Allah says in the Quran:
+
+<p className="io-arabic">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ</p>
+
+"And establish prayer and give zakat." (Quran 2:110)
+
+And:
+
+<p className="io-arabic">إِنَّمَا الصَّدَقَاتُ لِلْفُقَرَاءِ وَالْمَسَاكِينِ وَالْعَامِلِينَ عَلَيْهَا وَالْمُؤَلَّفَةِ قُلُوبُهُمْ وَفِي الرِّقَابِ وَالْغَارِمِينَ وَفِي سَبِيلِ اللَّهِ وَابْنِ السَّبِيلِ</p>
+
+"Zakah expenditures are only for the poor and for the needy and for those employed for it and for bringing hearts together and for freeing captives and for those in debt and for the cause of Allah and for the stranded traveller." (Quran 9:60)
+
+This calculator helps you determine whether you owe Zakat and how much is due. Enter your values below, and it will compare your net zakatable wealth against the nisab threshold.
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Interactive Zakat Calculator
+
+<Warning>
+  This calculator is a guide based on common scholarly conventions. If your situation is complex, consult a qualified Islamic scholar or authority. Do not rely solely on automated tools for religious obligations.
+</Warning>
+
+<ZakatCalculator />
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Who Must Pay Zakat
+
+Zakat becomes obligatory when three conditions are met:
+
+1. **Wealth reaches the nisab:** The total value of your zakatable assets equals or exceeds the value of 85 grams of gold or 595 grams of silver (scholars differ on which metal to use; see below).
+2. **A lunar year (hawl) has passed:** You have owned this wealth continuously for one Hijri year.
+3. **The wealth is surplus to basic needs:** Zakat applies to savings and investments beyond what you need for daily living, housing, clothing, tools of trade, and basic transport.
+
+<Info>
+  Cash, gold, silver, tradable goods, investment shares, and money owed to you are generally zakatable. Personal items such as your home, car, furniture, and clothing are not.
+</Info>
+
+## Nisab and the Difference Between Gold and Silver
+
+Nisab is the minimum amount of wealth that makes Zakat obligatory. The classical quantities are:
+
+| Metal | Nisab Weight | Notes |
+| --- | --- | --- |
+| Gold | 85 grams | Higher threshold; uses gold market price |
+| Silver | 595 grams | Lower threshold; uses silver market price |
+
+Because silver is much cheaper per gram than gold today, the silver nisab is significantly lower. Some scholars recommend using the silver nisab so more people qualify to give Zakat. Others say gold is more appropriate for modern urban life. You may choose according to your madhhab or local guidance. The calculator lets you toggle between the two.
+
+## What Is Zakatable
+
+| Category | Usually Zakatable | Usually Not Zakatable |
+| --- | --- | --- |
+| Cash (home and bank) | Yes | No |
+| Gold and silver jewelry kept as savings | Yes (scholars differ on worn jewelry) | No (if daily wear in some opinions) |
+| Investment shares and stocks | Yes (current market value) | No |
+| Business inventory for sale | Yes | No |
+| Money owed to you (likely to be repaid) | Yes | No (doubtful debts) |
+| Personal residence | No | Yes |
+| Vehicle for personal use | No | Yes |
+| Furniture and clothing | No | Yes |
+| Retirement accounts (some opinions) | Varies | Varies |
+
+<Tip>
+  For jewelry, the Hanafi school generally considers gold and silver jewelry zakatable regardless of whether it is worn. The Maliki, Shafi'i, and Hanbali schools often exempt jewelry that is in regular personal use. When in doubt, ask a scholar you trust.
+</Tip>
+
+## The 8 Categories of Zakat Recipients
+
+Quran 9:60 lists eight groups eligible to receive Zakat:
+
+1. **The poor (al-fuqara):** Those who have little or no wealth.
+2. **The needy (al-masakin):** Those whose basic needs are not met.
+3. **Zakat administrators:** Those appointed to collect and distribute Zakat.
+4. **Those whose hearts are to be reconciled:** New Muslims or those near to Islam, where giving may strengthen their faith.
+5. **To free captives:** Historical context includes freeing slaves; today may include assisting those unjustly detained.
+6. **The debt-ridden (al-gharimin):** Those burdened by debt through no fault of their own.
+7. **In the cause of Allah (fi sabilillah):** Scholars differ on the scope; often includes supporting students of sacred knowledge and legitimate charitable projects.
+8. **The wayfarer (ibn al-sabil):** A stranded traveller in need of funds to reach home.
+
+## Differences of Opinion
+
+Islamic scholarship has legitimate differences on several Zakat matters:
+
+- **Gold vs. silver nisab:** As noted above, this significantly changes the threshold today.
+- **Jewelry:** Worn gold and silver jewelry is zakatable in the Hanafi view and often exempt in the other three schools.
+- **Retirement and pension accounts:** Some scholars say Zakat is due annually on the accessible balance; others say it is due only when withdrawn.
+- **Business assets:** Some calculate Zakat on inventory at cost, others at market value.
+- **Property and land:** Land held for resale is zakatable; land held for personal use or long-term rental income is generally not zakatable itself (the rental income is treated like other cash).
+
+## Zakat al-Fitr
+
+Zakat al-Fitr is a separate charitable payment due before the Eid prayer at the end of Ramadan. It is obligatory on every Muslim who has surplus food beyond their needs, typically valued at the cost of staple food (about one sa' of dates, wheat, rice, or similar, roughly 2.5 to 3 kilograms). It is paid per person in the household and is intended to purify the fast and help the poor celebrate Eid.
+
+This is separate from annual Zakat on wealth and is not included in the calculator above.
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Related
+
+- [Zakat Complete Guide](/articles/zakat-complete-guide)
+- [Five Pillars of Islam](/articles/five-pillars-of-islam)
+- [Ramadan Fasting Guide](/articles/ramadan-fasting-guide)
+- [Qibla Direction Finder](/tools/qibla-direction)
+
+export const ZakatCalculator = () => {
+  const [currency, setCurrency] = useState("USD");
+  const [goldPrice, setGoldPrice] = useState("");
+  const [silverPrice, setSilverPrice] = useState("");
+  const [nisabBasis, setNisabBasis] = useState("gold");
+  const [cashHome, setCashHome] = useState("");
+  const [cashBank, setCashBank] = useState("");
+  const [goldGrams, setGoldGrams] = useState("");
+  const [silverGrams, setSilverGrams] = useState("");
+  const [investments, setInvestments] = useState("");
+  const [inventory, setInventory] = useState("");
+  const [receivables, setReceivables] = useState("");
+  const [liabilities, setLiabilities] = useState("");
+  const [showResult, setShowResult] = useState(false);
+
+  const parseNum = (v) => {
+    const n = parseFloat(v);
+    return isNaN(n) ? 0 : n;
+  };
+
+  const gp = parseNum(goldPrice);
+  const sp = parseNum(silverPrice);
+  const goldNisabValue = nisabBasis === "gold" ? gp * 85 : sp * 595;
+  const silverNisabValue = sp * 595;
+  const nisabValue = nisabBasis === "gold" ? goldNisabValue : silverNisabValue;
+
+  const totalAssets =
+    parseNum(cashHome) +
+    parseNum(cashBank) +
+    parseNum(goldGrams) * gp +
+    parseNum(silverGrams) * sp +
+    parseNum(investments) +
+    parseNum(inventory) +
+    parseNum(receivables);
+
+  const totalLiabilities = parseNum(liabilities);
+  const netWealth = totalAssets - totalLiabilities;
+  const aboveNisab = netWealth >= nisabValue && nisabValue > 0 && gp > 0 && sp > 0;
+  const zakatDue = aboveNisab ? netWealth * 0.025 : 0;
+
+  const fmt = (n) => {
+    if (n === 0) return "0";
+    return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+  };
+
+  const inputStyle = { padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14, width: "100%" };
+  const labelStyle = { fontSize: 14, display: "grid", gap: 4 };
+
+  return (
+    <div className="not-prose" style={{ border: "1px solid rgba(15,118,110,0.3)", borderRadius: 12, padding: 20, background: "rgba(15,118,110,0.06)" }}>
+      <div style={{ display: "grid", gap: 14 }}>
+        <div style={{ fontSize: 16, fontWeight: 600 }}>Market Prices & Nisab</div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Currency label
+            <input type="text" value={currency} onChange={(e) => setCurrency(e.target.value)} placeholder="USD, EUR, GBP..." style={inputStyle} />
+          </label>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Gold price per gram
+            <input type="number" step="any" value={goldPrice} onChange={(e) => setGoldPrice(e.target.value)} placeholder="e.g. 75" style={inputStyle} />
+          </label>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Silver price per gram
+            <input type="number" step="any" value={silverPrice} onChange={(e) => setSilverPrice(e.target.value)} placeholder="e.g. 0.90" style={inputStyle} />
+          </label>
+        </div>
+
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <button
+            type="button"
+            onClick={() => setNisabBasis("gold")}
+            style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: nisabBasis === "gold" ? "#0F766E" : "transparent", color: nisabBasis === "gold" ? "#fff" : "inherit", fontSize: 14, cursor: "pointer" }}
+          >
+            Gold nisab (85g)
+          </button>
+          <button
+            type="button"
+            onClick={() => setNisabBasis("silver")}
+            style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: nisabBasis === "silver" ? "#0F766E" : "transparent", color: nisabBasis === "silver" ? "#fff" : "inherit", fontSize: 14, cursor: "pointer" }}
+          >
+            Silver nisab (595g)
+          </button>
+        </div>
+
+        <div style={{ fontSize: 13, opacity: 0.85 }}>
+          Current {nisabBasis === "gold" ? "gold" : "silver"} nisab: {currency} {fmt(nisabValue)}
+        </div>
+
+        <div style={{ fontSize: 16, fontWeight: 600, marginTop: 6 }}>Zakatable Assets</div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Cash at home
+            <input type="number" step="any" value={cashHome} onChange={(e) => setCashHome(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Cash in bank
+            <input type="number" step="any" value={cashBank} onChange={(e) => setCashBank(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+        </div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Gold (grams)
+            <input type="number" step="any" value={goldGrams} onChange={(e) => setGoldGrams(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Silver (grams)
+            <input type="number" step="any" value={silverGrams} onChange={(e) => setSilverGrams(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+        </div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Investments / shares value
+            <input type="number" step="any" value={investments} onChange={(e) => setInvestments(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Business inventory value
+            <input type="number" step="any" value={inventory} onChange={(e) => setInventory(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+        </div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Money owed to you
+            <input type="number" step="any" value={receivables} onChange={(e) => setReceivables(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+        </div>
+
+        <div style={{ fontSize: 16, fontWeight: 600, marginTop: 6 }}>Liabilities (short-term debts due now)</div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ ...labelStyle, flex: 1, minWidth: 140 }}>
+            Debts and immediate liabilities
+            <input type="number" step="any" value={liabilities} onChange={(e) => setLiabilities(e.target.value)} placeholder="0" style={inputStyle} />
+          </label>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setShowResult(true)}
+          style={{ padding: "10px 18px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "#0F766E", color: "#fff", fontSize: 15, cursor: "pointer", alignSelf: "flex-start" }}
+        >
+          Calculate Zakat
+        </button>
+
+        {showResult && (
+          <div style={{ marginTop: 8, padding: 14, borderRadius: 10, border: "1px solid rgba(15,118,110,0.3)", background: "rgba(15,118,110,0.08)" }}>
+            <div style={{ fontSize: 15, marginBottom: 6 }}>Total zakatable assets: <strong>{currency} {fmt(totalAssets)}</strong></div>
+            <div style={{ fontSize: 15, marginBottom: 6 }}>Less liabilities: <strong>{currency} {fmt(totalLiabilities)}</strong></div>
+            <div style={{ fontSize: 15, marginBottom: 6 }}>Net zakatable wealth: <strong>{currency} {fmt(netWealth)}</strong></div>
+            <div style={{ fontSize: 15, marginBottom: 6 }}>Nisab threshold: <strong>{currency} {fmt(nisabValue)}</strong></div>
+            <div style={{ fontSize: 15, marginBottom: 10 }}>
+              Above nisab: <strong>{aboveNisab ? "Yes" : netWealth > 0 ? "No" : "N/A"}</strong>
+            </div>
+            {aboveNisab ? (
+              <div style={{ fontSize: 18, fontWeight: 700, color: "#0F766E" }}>
+                Zakat due (2.5%): {currency} {fmt(zakatDue)}
+              </div>
+            ) : (
+              <div style={{ fontSize: 15, opacity: 0.9 }}>
+                {netWealth > 0 ? "Your net wealth is below the nisab threshold. Zakat is not obligatory at this time." : "Enter your values above to see the result."}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

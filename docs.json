@@ -1,0 +1,223 @@
+{
+  "theme": "mint",
+  "name": "Islamic Online",
+  "description": "Quran, Hadith, Dua, prayer times, Islamic calendar, 99 Names of Allah, Qibla direction, Zakat calculator and in-depth Islamic articles.",
+  "colors": {
+    "primary": "#0F766E",
+    "light": "#2DD4BF",
+    "dark": "#0F766E"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg",
+  "appearance": {
+    "default": "light"
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "/prayer-times",
+        "label": "Prayer Times"
+      },
+      {
+        "href": "/quran",
+        "label": "Quran"
+      },
+      {
+        "href": "/articles/index",
+        "label": "Articles"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Qibla Direction",
+      "href": "/tools/qibla-direction"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Our special features",
+        "items": [
+          {
+            "label": "Al-Quran",
+            "href": "/quran"
+          },
+          {
+            "label": "Hadith",
+            "href": "/hadith"
+          },
+          {
+            "label": "Dua",
+            "href": "/dua"
+          },
+          {
+            "label": "Islamic Calendar",
+            "href": "/islamic-calendar"
+          },
+          {
+            "label": "99 Names",
+            "href": "/99-names"
+          },
+          {
+            "label": "Knowledge (Articles)",
+            "href": "/articles/index"
+          }
+        ]
+      },
+      {
+        "header": "Our Tools",
+        "items": [
+          {
+            "label": "Prayer Times",
+            "href": "/prayer-times"
+          },
+          {
+            "label": "Qibla Direction",
+            "href": "/tools/qibla-direction"
+          },
+          {
+            "label": "Date Converter",
+            "href": "/tools/date-converter"
+          },
+          {
+            "label": "Zakat Calculator",
+            "href": "/tools/zakat-calculator"
+          },
+          {
+            "label": "Tasbih Counter",
+            "href": "/tasbih"
+          }
+        ]
+      },
+      {
+        "header": "Islamic Online",
+        "items": [
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Contact us",
+            "href": "/contact"
+          },
+          {
+            "label": "Privacy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "href": "/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "seo": {
+    "metatags": {
+      "google-site-verification": "OqhGdJ_aNXti-vQ-L4nOPadp7cBUMCbDlnKy21nQE3c",
+      "google-adsense-account": "ca-pub-9372551067994918",
+      "og:site_name": "Islamic Online",
+      "og:type": "website",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "keywords": "Quran, Hadith, Dua, prayer times, Islamic calendar, Hijri date, 99 names of Allah, Qibla, Zakat calculator, Tasbih, Kalima"
+    },
+    "indexing": "navigable"
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view"
+    ],
+    "display": "header"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Home",
+        "groups": [
+          {
+            "group": "Welcome",
+            "pages": [
+              "index"
+            ]
+          },
+          {
+            "group": "Quran & Sunnah",
+            "pages": [
+              "quran",
+              "hadith",
+              "dua"
+            ]
+          },
+          {
+            "group": "Faith Basics",
+            "pages": [
+              "kalima",
+              "99-names",
+              "tasbih"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Prayer",
+        "groups": [
+          {
+            "group": "Prayer",
+            "pages": [
+              "prayer-times",
+              "islamic-calendar"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Tools",
+        "groups": [
+          {
+            "group": "Our Tools",
+            "pages": [
+              "tools/qibla-direction",
+              "tools/date-converter",
+              "tools/zakat-calculator"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Articles",
+        "groups": [
+          {
+            "group": "Knowledge",
+            "pages": [
+              "articles/index",
+              "articles/five-pillars-of-islam",
+              "articles/how-to-perform-salah",
+              "articles/ramadan-fasting-guide",
+              "articles/zakat-complete-guide",
+              "articles/meaning-of-99-names-of-allah"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "About",
+        "groups": [
+          {
+            "group": "Islamic Online",
+            "pages": [
+              "about",
+              "contact",
+              "privacy",
+              "terms"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

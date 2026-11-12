@@ -1,0 +1,295 @@
+---
+title: "Qibla Direction Finder: Find the Qibla from Anywhere"
+description: "Use our interactive Qibla finder to calculate the direction of the Kaaba from any city. Learn about true north, magnetic declination, and sun-based methods."
+sidebarTitle: "Qibla Direction"
+icon: "compass"
+---
+
+The Qibla is the direction Muslims face during prayer, toward the Sacred Mosque in Makkah and its Kaaba. Allah says in the Quran:
+
+<p className="io-arabic">فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ</p>
+
+"So wherever you turn, there is the Face of Allah." (Quran 2:115)
+
+And specifically regarding the Qibla:
+
+<p className="io-arabic">وَحَيْثُ مَا كُنتُمْ فَوَلُّوا وُجُوهَكُمْ شَطْرَهُ</p>
+
+"And from wherever you emerge, turn your face toward the Sacred Mosque." (Quran 2:150)
+
+This page helps you find the precise Qibla direction from any location using our interactive calculator, and explains the science and methods behind determining this blessed direction.
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Interactive Qibla Finder
+
+Use the tool below to calculate the great-circle bearing from your location to the Kaaba (21.4225 degrees North, 39.8262 degrees East). You can select a major city or enter custom coordinates. The result shows the initial bearing in degrees from true north, the approximate distance, and a visual compass.
+
+<QiblaFinder />
+
+<div className="ad-slot" data-ad="in-article" />
+
+## How to Use a Compass for Qibla
+
+A standard magnetic compass points to magnetic north, which is not the same as true north (the geographic North Pole). The difference between them is called magnetic declination, and it varies by location and changes slowly over time.
+
+<Steps>
+  <Step title="Find your local magnetic declination">
+    Use a reliable source such as the NOAA National Centers for Environmental Information or a similar geophysical service. Look up the declination for your city. A positive (easterly) declination means magnetic north is east of true north; a negative (westerly) declination means it is west.
+  </Step>
+  <Step title="Calculate the magnetic bearing">
+    If the Qibla bearing from true north is, for example, 58 degrees, and your declination is +5 degrees (east), subtract 5 degrees from 58 to get a magnetic bearing of 53 degrees. If the declination is negative (west), add its absolute value to the true bearing.
+  </Step>
+  <Step title="Align your compass">
+    Hold the compass level and away from metal objects. Rotate until the needle aligns with the calculated magnetic bearing. The direction of travel arrow on the compass now points toward the Qibla.
+  </Step>
+</Steps>
+
+<Tip>
+  For best accuracy, take declination readings from an up-to-date source. Declination shifts over years due to changes in Earth's magnetic field.
+</Tip>
+
+## Sun-Based Methods
+
+On two days each year, the sun passes directly above the Kaaba at approximately 12:18 PM Makkah time. At that moment, the shadow of any vertical object points directly opposite the Qibla, meaning the sun itself is in the exact direction of the Qibla from every location on Earth.
+
+These dates are approximately:
+
+- **27 or 28 May**
+- **15 or 16 July**
+
+The exact dates vary slightly from year to year due to the Gregorian calendar and the solar year. At those moments, Muslims anywhere in the world can face the sun to face the Qibla. Outside those exact moments, this method does not apply directly.
+
+<Note>
+  Some traditions also mention using the sun's position at other times by observing shadows, but these require precise knowledge of local time and solar angles. The two annual overhead passages are the most straightforward sun-based reference.
+</Note>
+
+<div className="ad-slot" data-ad="in-article" />
+
+## Understanding the Calculation
+
+The Qibla Finder above uses spherical trigonometry to compute the initial bearing along the shortest path (great-circle route) from your location to the Kaaba.
+
+The formula for initial bearing from point A to point B on a sphere is:
+
+```text
+tan(bearing) = sin(delta_longitude) / (cos(lat_A) * tan(lat_B) - sin(lat_A) * cos(delta_longitude))
+```
+
+Where:
+
+- lat_A and lat_B are the latitudes of your location and the Kaaba
+- delta_longitude is the difference in longitude
+
+The haversine formula then gives the great-circle distance:
+
+```text
+a = sin^2(delta_lat/2) + cos(lat_A) * cos(lat_B) * sin^2(delta_lon/2)
+c = 2 * atan2(sqrt(a), sqrt(1-a))
+distance = R * c
+```
+
+With Earth radius R = 6,371 km, this gives the shortest surface distance in kilometers.
+
+## Cardinal Direction Reference Table
+
+| Bearing Range | Cardinal Direction |
+| --- | --- |
+| 0 to 22.5 | North (N) |
+| 22.5 to 67.5 | Northeast (NE) |
+| 67.5 to 112.5 | East (E) |
+| 112.5 to 157.5 | Southeast (SE) |
+| 157.5 to 202.5 | South (S) |
+| 202.5 to 247.5 | Southwest (SW) |
+| 247.5 to 292.5 | West (W) |
+| 292.5 to 337.5 | Northwest (NW) |
+| 337.5 to 360 | North (N) |
+
+## Tips for Accurate Qibla Finding
+
+- **Use true north when possible:** GPS and online maps use true north. Adjust for magnetic declination only when using a physical compass.
+- **Avoid metal interference:** Phones, watches, keys, and reinforced concrete can distort a magnetic compass reading. Step away from large metal objects.
+- **Cross-check with multiple methods:** Use the calculator, a compass, and if available, local mosque alignment or verified Qibla markers.
+- **High latitudes:** In locations very far from Makkah (for example, Alaska or southern South America), the great-circle route can curve significantly. The initial bearing is still correct for prayer direction.
+- **Mosques may differ:** Some mosques were built using older maps or local conventions. If in doubt, the great-circle bearing to the Kaaba is the standard scholarly preference.
+
+## Related
+
+- [Islamic Calendar](/islamic-calendar)
+- [Prayer Times](/prayer-times)
+- [Duas](/dua)
+- [Tasbih](/tasbih)
+- [99 Names of Allah](/99-names)
+
+export const QiblaFinder = () => {
+  const KAABA_LAT = 21.4225;
+  const KAABA_LON = 39.8262;
+  const R = 6371;
+
+  const cities = {
+    Jakarta: { lat: -6.2088, lon: 106.8456 },
+    "Kuala Lumpur": { lat: 3.1390, lon: 101.6869 },
+    Istanbul: { lat: 41.0082, lon: 28.9784 },
+    Cairo: { lat: 30.0444, lon: 31.2357 },
+    London: { lat: 51.5074, lon: -0.1278 },
+    "New York": { lat: 40.7128, lon: -74.0060 },
+    Karachi: { lat: 24.8607, lon: 67.0011 },
+    Dhaka: { lat: 23.8103, lon: 90.4125 },
+    Paris: { lat: 48.8566, lon: 2.3522 },
+    Sydney: { lat: -33.8688, lon: 151.2093 },
+    Lagos: { lat: 6.5244, lon: 3.3792 },
+    Toronto: { lat: 43.6532, lon: -79.3832 },
+  };
+
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [geoMsg, setGeoMsg] = useState("");
+
+  const toRad = (deg) => (deg * Math.PI) / 180;
+  const toDeg = (rad) => (rad * 180) / Math.PI;
+
+  const compute = (latitude, longitude) => {
+    const lat1 = toRad(latitude);
+    const lat2 = toRad(KAABA_LAT);
+    const dLon = toRad(KAABA_LON - longitude);
+
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x =
+      Math.cos(lat1) * Math.sin(lat2) -
+      Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+    let bearing = toDeg(Math.atan2(y, x));
+    bearing = (bearing + 360) % 360;
+
+    const dLat = toRad(KAABA_LAT - latitude);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) *
+        Math.cos(lat2) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    return { bearing, distance };
+  };
+
+  const getCardinal = (b) => {
+    const dirs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    const idx = Math.round(b / 22.5) % 16;
+    return dirs[idx];
+  };
+
+  const latNum = parseFloat(lat);
+  const lonNum = parseFloat(lon);
+  const valid = !isNaN(latNum) && !isNaN(lonNum) && latNum >= -90 && latNum <= 90 && lonNum >= -180 && lonNum <= 180;
+  const result = valid ? compute(latNum, lonNum) : null;
+
+  const handleCity = (name) => {
+    setSelectedCity(name);
+    if (name && cities[name]) {
+      setLat(cities[name].lat.toString());
+      setLon(cities[name].lon.toString());
+    }
+  };
+
+  const useGeolocation = () => {
+    setGeoMsg("");
+    if (typeof navigator !== "undefined" && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setLat(pos.coords.latitude.toFixed(5));
+          setLon(pos.coords.longitude.toFixed(5));
+          setSelectedCity("");
+          setGeoMsg("Location detected successfully.");
+        },
+        () => {
+          setGeoMsg("Unable to detect location. Please enter coordinates manually.");
+        }
+      );
+    } else {
+      setGeoMsg("Geolocation is not supported by this browser.");
+    }
+  };
+
+  return (
+    <div className="not-prose" style={{ border: "1px solid rgba(15,118,110,0.3)", borderRadius: 12, padding: 20, background: "rgba(15,118,110,0.06)" }}>
+      <div style={{ display: "grid", gap: 12 }}>
+        <label style={{ fontSize: 14, display: "grid", gap: 4 }}>
+          Select a city
+          <select
+            value={selectedCity}
+            onChange={(e) => handleCity(e.target.value)}
+            style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }}
+          >
+            <option value="">-- Choose city or enter custom --</option>
+            {Object.keys(cities).map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 140 }}>
+            Latitude
+            <input
+              type="number"
+              step="any"
+              value={lat}
+              onChange={(e) => { setLat(e.target.value); setSelectedCity(""); }}
+              placeholder="e.g. 40.7128"
+              style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }}
+            />
+          </label>
+          <label style={{ fontSize: 14, display: "grid", gap: 4, flex: 1, minWidth: 140 }}>
+            Longitude
+            <input
+              type="number"
+              step="any"
+              value={lon}
+              onChange={(e) => { setLon(e.target.value); setSelectedCity(""); }}
+              placeholder="e.g. -74.0060"
+              style={{ padding: 8, borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "transparent", color: "inherit", fontSize: 14 }}
+            />
+          </label>
+        </div>
+
+        <button
+          type="button"
+          onClick={useGeolocation}
+          style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid rgba(15,118,110,0.3)", background: "#0F766E", color: "#fff", fontSize: 14, cursor: "pointer", alignSelf: "flex-start" }}
+        >
+          Use my location
+        </button>
+        {geoMsg && <div style={{ fontSize: 13, color: "inherit", opacity: 0.8 }}>{geoMsg}</div>}
+
+        {result && (
+          <div style={{ display: "grid", gap: 10, marginTop: 8 }}>
+            <div style={{ fontSize: 16, fontWeight: 600 }}>
+              Bearing: {result.bearing.toFixed(1)} degrees ({getCardinal(result.bearing)})
+            </div>
+            <div style={{ fontSize: 14, opacity: 0.9 }}>
+              Distance: {result.distance.toFixed(0)} km to the Kaaba
+            </div>
+
+            <svg viewBox="0 0 200 200" style={{ width: "100%", maxWidth: 260, display: "block", margin: "0 auto" }}>
+              <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(15,118,110,0.4)" strokeWidth="2" />
+              <circle cx="100" cy="100" r="4" fill="#0F766E" />
+              <text x="100" y="18" textAnchor="middle" fontSize="14" fill="currentColor" fontWeight="600">N</text>
+              <text x="182" y="105" textAnchor="middle" fontSize="14" fill="currentColor" fontWeight="600">E</text>
+              <text x="100" y="190" textAnchor="middle" fontSize="14" fill="currentColor" fontWeight="600">S</text>
+              <text x="18" y="105" textAnchor="middle" fontSize="14" fill="currentColor" fontWeight="600">W</text>
+
+              <g transform={`rotate(${result.bearing} 100 100)`}>
+                <line x1="100" y1="100" x2="100" y2="30" stroke="#D4A017" strokeWidth="3" strokeLinecap="round" />
+                <polygon points="100,22 94,36 106,36" fill="#D4A017" />
+              </g>
+            </svg>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
